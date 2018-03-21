@@ -101,8 +101,8 @@ $sess_array = array(
 'username' => ''
 );
 $this->session->unset_userdata('logged_in', $sess_array);
-$data['message_display'] = 'Successfully Logout';
-$this->load->view('login_form', $data);
+$data['message_display'] = 'Sesion cerrada';
+$this->load->view('principal/vlogin', $data);
 }
 
 }
