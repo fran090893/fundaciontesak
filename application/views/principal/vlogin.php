@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+if (isset($this->session->userdata['logged_in'])) {
 
+header("location: http://localhost:/fundaciontesak/clogin/user_login_process");
+}
+?>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,16 +46,16 @@
 
   <div class="container">
 
-    <form class="login-form" method="POST" action="<?php echo base_url();?>clogin/ingresar">
+    <form class="login-form" method="POST" action="<?php echo base_url();?>clogin/user_login_process">
       <div class="login-wrap">
         <p class="login-img"><i class="icon_lock_alt"></i></p>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_profile"></i></span>
-          <input type="text" name="user" class="form-control" placeholder="Username" autofocus>
+          <input type="text" name="username" class="form-control" placeholder="Username" autofocus>
         </div>
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-          <input type="password" name="passw" class="form-control" placeholder="Password">
+          <input type="password" name="password" class="form-control" placeholder="Password">
         </div>
         <label class="checkbox">
                 <input type="checkbox" value="remember-me"> Remember me

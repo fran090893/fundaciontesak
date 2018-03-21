@@ -11,15 +11,15 @@
             <div class="profile-widget profile-widget-info">
               <div class="panel-body">
                 <div class="col-lg-2 col-sm-2">
-                  <h4><?php echo $this->session->userdata('s_nombre')." ".$this->session->userdata('s_apellido'); ?></h4>
+                  <h4><?php echo $this->session->userdata['logged_in']['s_nombre']." ".$this->session->userdata['logged_in']['s_apellido']; ?></h4>
                   <div class="follow-ava">
                     <img src="<?Php echo base_url();?>assets/img/profile-widget-avatar.jpg" alt="">
                   </div>
-                  <h6><?php if ($this->session->userdata('s_cargo') == 1) {
+                  <h6><?php if ($this->session->userdata['logged_in']['s_cargo'] == 1) {
     echo "Administrador";
-} elseif ($this->session->userdata('s_cargo') == 2) {
+} elseif ($this->session->userdata['logged_in']['s_cargo'] == 2) {
     echo "Coordinador";
-} elseif ($this->session->userdata('s_cargo') == 3) {
+} elseif ($this->session->userdata['logged_in']['s_cargo'] == 3) {
     echo "Colaborador";
 } ?></h6>
                 </div>
@@ -62,25 +62,25 @@
                         <h1>Datos de la persona</h1>
                         <div class="row">
                           <div class="bio-row">
-                            <p><span>Nombres</span>: <?php echo $this->session->userdata('s_nombre')?> </p>
+                            <p><span>Nombres</span>: <?php echo $this->session->userdata['logged_in']['s_nombre']?> </p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Last Name </span>: <?php echo $this->session->userdata('s_apellido')?></p>
+                            <p><span>Last Name </span>: <?php echo $this->session->userdata['logged_in']['s_apellido']?></p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Cargo </span>: <?php if ($this->session->userdata('s_cargo') == 1) {
+                            <p><span>Cargo </span>: <?php if ($this->session->userdata['logged_in']['s_cargo'] == 1) {
     echo "Administrador";
-} elseif ($this->session->userdata('s_cargo') == 2) {
+} elseif ($this->session->userdata['logged_in']['s_cargo'] == 2) {
     echo "Coordinador";
-} elseif ($this->session->userdata('s_cargo') == 3) {
+} elseif ($this->session->userdata['logged_in']['s_cargo'] == 3) {
     echo "Colaborador";
 } ?></p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Departamento </span>: <?php echo $this->session->userdata('s_departamento')?></p>
+                            <p><span>Departamento </span>: <?php echo $this->session->userdata['logged_in']['s_departamento']?></p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Telefono </span>: <?php echo $this->session->userdata('s_telefono')?></p>
+                            <p><span>Telefono </span>: <?php echo $this->session->userdata['logged_in']['s_telefono']?></p>
                           </div>
                           <div class="bio-row">
                             <p><span>Phone </span>: (+021) 956 789123</p>
@@ -102,20 +102,20 @@
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Nombres</label>
                             <div class="col-lg-6">
-                              <input type="text" class="form-control" id="f-name" placeholder=" " value="<?php echo $this->session->userdata('s_nombre')?>">
+                              <input type="text" class="form-control" id="f-name" placeholder=" " value="<?php echo $this->session->userdata['logged_in']['s_nombre']?>">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Apellidos</label>
                             <div class="col-lg-6">
-                              <input type="text" class="form-control" id="l-name" placeholder=" "value="<?php echo $this->session->userdata('s_apellido')?>">
+                              <input type="text" class="form-control" id="l-name" placeholder=" "value="<?php echo $this->session->userdata['logged_in']['s_apellido']?>">
                             </div>
                           </div>
                         
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Telefono</label>
                             <div class="col-lg-6">
-                              <input type="text" class="form-control" id="c-name" placeholder=" "value="<?php echo $this->session->userdata('s_telefono')?>">
+                              <input type="text" class="form-control" id="c-name" placeholder=" "value="<?php echo $this->session->userdata['logged_in']['s_telefono']?>">
                             </div>
                           </div>
                           
