@@ -81,11 +81,7 @@
                           </div>
                           <div class="bio-row">
                             <p><span>Telefono </span>: <?php echo $this->session->userdata['logged_in']['s_telefono']?></p>
-                          </div>
-                          <div class="bio-row">
-                            <p><span>Phone </span>: (+021) 956 789123</p>
-                          </div>
-                        </div>
+                       
                       </div>
                     </section>
                     <section>
@@ -98,24 +94,24 @@
                     <section class="panel">
                       <div class="panel-body bio-graph-info">
                         <h1> Editar informacion</h1>
-                        <form class="form-horizontal" role="form">
+                        <form class="form-horizontal" action="<?Php echo base_url();?>cperfil/update_perfil" role="form" method="POST">
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Nombres</label>
                             <div class="col-lg-6">
-                              <input type="text" class="form-control" id="f-name" placeholder=" " value="<?php echo $this->session->userdata['logged_in']['s_nombre']?>">
+                              <input name="nombre" type="text" class="form-control" id="f-name" placeholder=" " value="<?php echo $this->session->userdata['logged_in']['s_nombre']?>">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Apellidos</label>
                             <div class="col-lg-6">
-                              <input type="text" class="form-control" id="l-name" placeholder=" "value="<?php echo $this->session->userdata['logged_in']['s_apellido']?>">
+                              <input name="apellido" type="text" class="form-control" id="l-name" placeholder=" "value="<?php echo $this->session->userdata['logged_in']['s_apellido']?>">
                             </div>
                           </div>
                         
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Telefono</label>
                             <div class="col-lg-6">
-                              <input type="text" class="form-control" id="c-name" placeholder=" "value="<?php echo $this->session->userdata['logged_in']['s_telefono']?>">
+                              <input name="telefono" type="text" class="form-control" id="c-name" placeholder=" "value="<?php echo $this->session->userdata['logged_in']['s_telefono']?>">
                             </div>
                           </div>
                           
@@ -124,7 +120,7 @@
                           <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
                               <button type="submit" class="btn btn-primary">Save</button>
-                              <button type="button" class="btn btn-danger">Cancel</button>
+                              
                             </div>
                           </div>
                         </form>
