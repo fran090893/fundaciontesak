@@ -1,5 +1,4 @@
-
-        <div class="row">
+<div class="row">
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-user-md"></i> Perfil</h3>
           
@@ -81,7 +80,11 @@
                           </div>
                           <div class="bio-row">
                             <p><span>Telefono </span>: <?php echo $this->session->userdata['logged_in']['s_telefono']?></p>
-                       
+                          </div>
+                          <div class="bio-row">
+                            <p><span>Phone </span>: (+021) 956 789123</p>
+                          </div>
+                        </div>
                       </div>
                     </section>
                     <section>
@@ -94,7 +97,7 @@
                     <section class="panel">
                       <div class="panel-body bio-graph-info">
                         <h1> Editar informacion</h1>
-                        <form class="form-horizontal" action="<?Php echo base_url();?>cperfil/update_perfil" role="form" method="POST">
+                        <form action="<?php echo base_url(); ?>cperfil/update_perfil" method="POST" class="form-horizontal" role="form">
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Nombres</label>
                             <div class="col-lg-6">
@@ -120,7 +123,7 @@
                           <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
                               <button type="submit" class="btn btn-primary">Save</button>
-                              
+                              <button type="button" class="btn btn-danger">Cancel</button>
                             </div>
                           </div>
                         </form>
