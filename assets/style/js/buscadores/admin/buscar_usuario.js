@@ -2,7 +2,7 @@ $(buscar_usuarios());
 
 function buscar_usuarios(consulta){
 	$.ajax({
-		url: 'http://localhost/fundaciontesak/c_admin/cusuario/buscarUsuarios' ,
+		url: BASE_URL+'c_admin/cusuario/buscarUsuarios' ,
 		type: 'POST' ,
 		dataType: 'html',
 		data: {consulta: consulta},

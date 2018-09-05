@@ -2,7 +2,7 @@ $(buscar_grupos());
 
 function buscar_grupos(consulta){
 	$.ajax({
-		url: 'http://localhost/fundaciontesak/c_admin/cgrupo/buscarGrupo' ,
+		url: BASE_URL+'c_admin/cgrupo/buscarGrupo' ,
 		type: 'POST' ,
 		dataType: 'html',
 		data: {consulta: consulta},

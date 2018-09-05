@@ -2,7 +2,7 @@ $(lista_asistencia_buscar());
 
 function lista_asistencia_buscar(consulta){
 	$.ajax({
-		url: 'http://localhost/fundaciontesak/c_admin/cevento/buscarAsistencia' ,
+		url: BASE_URL+'c_admin/cevento/buscarAsistencia' ,
 		type: 'POST' ,
 		dataType: 'html',
 		data: {consulta: consulta},

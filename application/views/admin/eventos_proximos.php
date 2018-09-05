@@ -25,5 +25,8 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  var BASE_URL = "<?php echo base_url();?>";
+</script>
 <script src="<?php echo base_url('assets/style/js/jquery.min.js');?>"></script>
 <script src="<?php echo base_url('assets/style/js/buscadores/admin/buscar_eproximos.js');?>"></script>

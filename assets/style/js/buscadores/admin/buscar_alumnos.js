@@ -2,7 +2,7 @@ $(buscar_alumnos());
 
 function buscar_alumnos(consulta){
 	$.ajax({
-		url: 'http://localhost/fundaciontesak/c_admin/calumno/buscarAlumno' ,
+		url: BASE_URL+'c_admin/calumno/buscarAlumno' ,
 		type: 'POST' ,
 		dataType: 'html',
 		data: {consulta: consulta},

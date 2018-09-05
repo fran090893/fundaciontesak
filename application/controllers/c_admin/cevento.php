@@ -61,7 +61,7 @@ class Cevento extends CI_Controller
 
       $this->session->set_userdata($n);
       $datos['e1'] = $id_evento;
-      $datos['g11'] = $id_grupo
+      $datos['g11'] = $id_grupo;
       $datos['error'] = '';
       $titulo['title'] = 'Lista de asistencia | Fundación Tesak';
       $this->load->view('layout/header',$titulo);

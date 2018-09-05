@@ -2,7 +2,7 @@ $(buscar_eventos_proximos());
 
 function buscar_eventos_proximos(consulta){
 	$.ajax({
-		url: 'http://localhost/fundaciontesak/c_admin/cevento/buscarEventoProximo' ,
+		url: BASE_URL+'c_admin/cevento/buscarEventoProximo' ,
 		type: 'POST' ,
 		dataType: 'html',
 		data: {consulta: consulta},
