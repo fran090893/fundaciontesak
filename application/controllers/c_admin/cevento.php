@@ -56,7 +56,7 @@ class Cevento extends CI_Controller
     {
       $id_grupo = $this->input->get('id', TRUE);
       $id_evento = $this->input->get('e', TRUE);
-      $n['id_evento1'] = $id_evento;
+      $n['id_evento21'] = $id_evento;
       $n['id_grupo3'] = $id_grupo;
 
       $this->session->set_userdata($n);
@@ -89,13 +89,13 @@ class Cevento extends CI_Controller
         foreach($resultados as $filas)
         {
               $salida .='
-              <tr>
+              <tr id="tr-'.$filas->id_alumno.'">
                       <td>'.$filas->alumno_nombre.' '.$filas->alumno_apellido.'</td>
                       <td>'.$filas->grupo.'</td>
                       <td>'.$filas->departamento.'</td>
                       <td>
-                        <a  href="#" class="insertaa btn btn-success btn-md"  data-id="'.$filas->id_alumno.'" data-evento="'.$this->session->userdata('id_evento1').'" ><i class="fas fa-check"></i></a>
-                        <a  href="#" class="insertab btn btn-danger btn-md" data-id="'.$filas->id_alumno.'"  data-evento="'.$this->session->userdata('id_evento1').'"><i class="fas fa-times"></i></a>
+                        <button class="insertaa btn btn-success btn-md"  data-id="'.$filas->id_alumno.'" data-evento="'.$this->session->userdata('id_evento1').'" ><i class="fas fa-check"></i></button>
+                        <button class="insertab btn btn-danger btn-md" data-id="'.$filas->id_alumno.'"  data-evento="'.$this->session->userdata('id_evento1').'"><i class="fas fa-times"></i></button>
                       </td>
              </tr>
               ';
@@ -190,6 +190,51 @@ class Cevento extends CI_Controller
           $this->load->view('layout/scripting');
         }
     }
+  }
+
+  public function asistencia()
+  {
+    $salida='';
+    $arreglo['alumno_id1'] = $this->input->post('id');
+    $arreglo['evento_id1'] = $this->input->post('evento');
+    $arreglo['asistencia1'] = $this->input->post('asistente');
+
+    $this->mevento->asistenciaConsulta($arreglo);
+
+    $cuenta = $this->session->userdata('casistencia_id');
+
+    if ($cuenta > 0)
+    {
+      $salida .='true';
+    }
+    else
+    {
+      $salida .='false';
+    }
+
+    return $salida;
+  }
+
+  public function eventoRealizado()
+  {
+    $salida='';
+
+    $id_evento = $this->input->post('id');
+
+    $this->mevento->eventoRealizadoConsulta($id_evento);
+
+    $cuenta = $this->session->userdata('casistencia_id');
+
+    if ($cuenta > 0)
+    {
+      $salida .='true';
+    }
+    else
+    {
+      $salida .='false';
+    }
+
+    return $salida;
   }
 }
  ?>

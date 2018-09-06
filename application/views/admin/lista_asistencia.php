@@ -20,8 +20,8 @@
                 </tbody>
               </table>
             <div class="form-group" style="text-align:center;">
-            <a href="#" class="btn btn-info btn-md" ><i class="fas fa-print"></i>&nbsp; Imprimir lista</a>&nbsp;
-            <a  href="#" class="btn btn-success btn-md evento_realizado" data-id="<?php echo $e1?>"><i class="fas fa-clipboard-check"></i>&nbsp; Confirmar asistencia</a>
+            <a  href="#" class="btn btn-info btn-md" ><i class="fas fa-print"></i>&nbsp; Imprimir lista</a>&nbsp;
+            <button class="btn btn-success btn-md evento_realizado" data-id="<?php echo $e1; ?>"><i class="fas fa-clipboard-check"></i>&nbsp; Confirmar asistencia</a>
           </div>
         </div>
       </div>

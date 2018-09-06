@@ -5,9 +5,11 @@ $(document).ready(function(){
    var eventovalue = $(this).attr("data-evento");
    var asistentevalue = 1;
 	$.ajax({
-	url: 'casistencia.php',
+	url: BASE_URL+'c_admin/cevento/asistencia',
   method: 'POST',
+  dataType: 'html',
 	data: { id: idvalue, evento: eventovalue, asistente: asistentevalue},
+
 	success: function(result){
 	//result es lo que envias desde tu metodo en el controlador yo le enviaria un tru o false
 		if(result)
@@ -28,7 +30,7 @@ $(document).ready(function(){
    var idvalue = $(this).attr("data-id");
 
 	$.ajax({
-	url: 'ceventorealizado.php',
+	url: BASE_URL+'c_admin/cevento/eventoRealizado',
   method: 'POST',
 	data: { id: idvalue},
 	success: function(result){
@@ -40,7 +42,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-		   // mostrar error que no se inserto
+		   alert('Complete la asistencia antes de continuar.');
 		}
 	}
 });
@@ -52,7 +54,7 @@ $(document).ready(function(){
    var eventovalue = $(this).attr("data-evento");
    var asistentevalue = 0;
 	$.ajax({
-	url: 'casistencia.php',
+	url: BASE_URL+'c_admin/cevento/asistencia',
   method: 'POST',
 	data: { id: idvalue, evento: eventovalue, asistente: asistentevalue},
 	success: function(result){

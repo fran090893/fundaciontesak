@@ -39,7 +39,8 @@ class Mevento extends CI_Model
 
     if(isset($busqueda1))
     {
-      $c = "SELECT id_alumno, alumno_nombre, alumno_apellido, grupo.grupo_nombre AS grupo, grupo.id_departamento AS dept_alumno, departamento.departamento_nombre AS departamento FROM alumno INNER JOIN grupo on alumno.id_grupo = grupo.id_grupo INNER JOIN departamento on grupo.id_departamento = departamento.id_departamento WHERE NOT EXISTS (SELECT * FROM asistencia WHERE asistencia.id_alumno=alumno.id_alumno AND asistencia.id_evento= '".$id_evento."') AND alumno.id_grupo = '".$id_grupo."'
+      $s1 ="SELECT id_alumno, alumno_nombre, alumno_apellido, grupo.grupo_nombre AS grupo, grupo.id_departamento AS dept_alumno, departamento.departamento_nombre AS departamento FROM alumno INNER JOIN grupo on alumno.id_grupo = grupo.id_grupo INNER JOIN departamento on grupo.id_departamento = departamento.id_departamento";
+      $c = $s1." WHERE NOT EXISTS (SELECT * FROM asistencia WHERE asistencia.id_alumno=alumno.id_alumno AND asistencia.id_evento= '".$id_evento."') AND alumno.id_grupo = '".$id_grupo."'
       AND (alumno_nombre LIKE '".$busqueda1."%' OR grupo.grupo_nombre LIKE '".$busqueda1."%')  ";
 
     }
@@ -51,6 +52,28 @@ class Mevento extends CI_Model
 
     return $row;
   }
+
+  public function asistenciaConsulta($arreglo)
+  {
+    $c="INSERT INTO asistencia (id_asistencia, id_alumno, id_evento, asistencia) VALUES(null, '".$arreglo['alumno_id1']."','".$arreglo['evento_id1']."','".$arreglo['asistencia1']."') ";
+    $resultados = $this->db->query($c);
+    $n['casistencia_id'] = $resultados->num_rows();
+    $this->session->set_userdata($n);
+
+    return $resultados;
+  }
+
+  public function eventoRealizadoConsulta($id_evento)
+  {
+    $c = "UPDATE evento SET estado = 1 WHERE evento.id_evento = '".$id_evento."' ";
+    $resultados = $this->db->query($c);
+    $n['crealizado_id'] = $resultados->num_rows();
+    $this->session->set_userdata($n);
+
+    return $resultados;
+  }
 }
+
+
 
 ?>

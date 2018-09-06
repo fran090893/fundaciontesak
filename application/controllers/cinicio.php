@@ -9,7 +9,7 @@ class Cinicio extends CI_Controller
 
   function menu()
   {
-    if(! $this->session->userdata('usuario'))
+    if(!$this->session->userdata('usuario'))
     {
       $data['error'] = '';
       $this->load->view('login',$data);
