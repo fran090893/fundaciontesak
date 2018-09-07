@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-  <img src="<?php echo base_url('archivos/Feexpt.png');?>" class="img-fluid" />
+  <a href="<?php echo base_url('cinicio/menu');?>"><img src="<?php echo base_url('archivos/Feexpt.png');?>" class="img-fluid" /></a>
 
   <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#" >
     <i class="fas fa-bars"></i>
@@ -14,8 +14,8 @@
         <i class="fas fa-user-circle fa-fw"></i>
       </a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="#"><i class="fas fa-fw fa-user"></i> <?php echo $this->session->userdata('usuario');?></a>
-        <a class="dropdown-item" href="#"><i class="fas fa-fw fa-key"></i> Cambiar contraseña</a>
+        <button class="dropdown-item"><i class="fas fa-fw fa-user"></i> <?php echo $this->session->userdata('usuario');?></button>
+        <a class="dropdown-item" href="<?php echo base_url('clogin/v_cambiarClave');?>"><i class="fas fa-fw fa-key"></i> Cambiar contraseña</a>
         <a class="dropdown-item" href="<?php echo base_url('csalir');?>"  ><i class="fas fa-fw fa-sign-out-alt"></i> Cerrar sesión</a>
       </div>
     </li>
@@ -80,8 +80,8 @@
         <span>Reportes</span>
       </a>
       <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-        <a class="dropdown-item" href="login.html">Asistencia de grupos</a>
-        <a class="dropdown-item" href="register.html">Eventos realizados</a>
+        <a class="dropdown-item" href="<?php echo base_url('c_admin/cevento/v_asistenciaGrupal');?>">Asistencia de grupos</a>
+        <a class="dropdown-item" href="<?php echo base_url('c_admin/cevento/v_buscarEventosRealizados');?>">Eventos realizados</a>
       </div>
     </li>
     <li class="nav-item dropdown">

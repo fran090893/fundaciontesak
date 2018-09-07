@@ -21,14 +21,33 @@
               </table>
             <div class="form-group" style="text-align:center;">
             <a  href="#" class="btn btn-info btn-md" ><i class="fas fa-print"></i>&nbsp; Imprimir lista</a>&nbsp;
-            <button class="btn btn-success btn-md evento_realizado" data-id="<?php echo $e1; ?>"><i class="fas fa-clipboard-check"></i>&nbsp; Confirmar asistencia</a>
-          </div>
+            <button class="btn btn-success btn-md evento_realizado" data-id="<?php echo $e1; ?>"><i class="fas fa-clipboard-check"></i>&nbsp; Confirmar asistencia</button>
         </div>
       </div>
   </div>
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fa fa-angle-up"></i>
+</a>
+
+  <script src="<?php echo base_url('assets/style/vendor/jquery/jquery.min.js');?>"></script>
+  <script src="<?php echo base_url('assets/style/vendor/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
+  <script src="<?php echo base_url('assets/style/vendor/jquery-easing/jquery.easing.min.js');?>"></script>
+  <script src="<?php echo base_url('assets/style/js/sb-admin.min.js');?>"></script>
   <script type="text/javascript">
     var BASE_URL = "<?php echo base_url();?>";
   </script>
+  <script src="<?php echo base_url('assets/style/js/buscadores/asistencia_sc.js');?>"></script>
   <script src="<?php echo base_url('assets/style/js/jquery.min.js');?>"></script>
   <script src="<?php echo base_url('assets/style/js/buscadores/admin/lista_asistencia_buscar.js');?>"></script>
-  <script src="<?php echo base_url('assets/style/js/buscadores/asistencia_sc.js');?>"></script>
+</div>
+</body>
+
+</html>

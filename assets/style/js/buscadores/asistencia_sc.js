@@ -7,9 +7,7 @@ $(document).ready(function(){
 	$.ajax({
 	url: BASE_URL+'c_admin/cevento/asistencia',
   method: 'POST',
-  dataType: 'html',
 	data: { id: idvalue, evento: eventovalue, asistente: asistentevalue},
-
 	success: function(result){
 	//result es lo que envias desde tu metodo en el controlador yo le enviaria un tru o false
 		if(result)
@@ -37,12 +35,12 @@ $(document).ready(function(){
 	//result es lo que envias desde tu metodo en el controlador yo le enviaria un tru o false
 		if(result)
 		{
-		 alert('Asistencia confirmada.');
+		 alert('asistencia completada');
      //header 'eventos_realizados.php';
 		}
 		else
 		{
-		   alert('Complete la asistencia antes de continuar.');
+		   // mostrar error que no se inserto
 		}
 	}
 });

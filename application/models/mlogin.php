@@ -13,6 +13,7 @@ class Mlogin extends CI_Model
     $row = $resultados ->row_array();
 
     $usuario_datos = array(
+      'id_s' => $row['id_usuario'],
       'usuario' => $row['usuario'],
       'cargo' => $row['id_cargo'],
       'telefono' => $row['usuario_telefono'],
@@ -22,6 +23,14 @@ class Mlogin extends CI_Model
     $this->session->set_userdata($usuario_datos);
 
     return $row;
+  }
+
+  public function cambiarClaveConsulta($contra, $id_usuario)
+  {
+    $c1 = "UPDATE usuario SET usuario_password='".$contra."' WHERE id_usuario='".$id_usuario."'";
+    $resultados = $this->db->query($c1);
+
+    return $resultados;
   }
 }
 ?>
