@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  $(".insertaa").on("click", function(){
+  $(document).on("click",".insertaa", function(){
    var idvalue = $(this).attr("data-id");
    var eventovalue = $(this).attr("data-evento");
    var asistentevalue = 1;
@@ -47,7 +47,7 @@ $(document).ready(function(){
 });
 
 
-  $(".insertab").on("click", function(){
+  $(document).on("click",".insertab", function(){
    var idvalue = $(this).attr("data-id");
    var eventovalue = $(this).attr("data-evento");
    var asistentevalue = 0;

@@ -186,16 +186,13 @@ class Cevento extends CI_Controller
               $salida .='
               <tr id="tr-'.$filas->id_alumno.'">
                       <td>'.$filas->alumno_nombre.' '.$filas->alumno_apellido.'</td>
-                      <td>'.$filas->grupo.'</td>
+                      <td>'.$filas->grupo.' '.$id_evento.'</td>
                       <td>'.$filas->departamento.'</td>
                       <td>
                         <button class="insertaa btn btn-success btn-md"  data-id="'.$filas->id_alumno.'" data-evento="'.$id_evento.'" ><i class="fas fa-check"></i></button>
                         <button class="insertab btn btn-danger btn-md" data-id="'.$filas->id_alumno.'"  data-evento="'.$id_evento.'"><i class="fas fa-times"></i></button>
                       </td>
-             </tr>
-
-
-              ';
+             </tr>';
          }
 
       }
@@ -302,11 +299,9 @@ class Cevento extends CI_Controller
       $arreglo['evento_id1'] = $this->input->post('evento');
       $arreglo['asistencia1'] = $this->input->post('asistente');
 
-      $this->mevento->asistenciaConsulta($arreglo);
+      $bandera = $this->mevento->asistenciaConsulta($arreglo);
 
-      $cuenta = $this->session->userdata('casistencia_id');
-
-      if($cuenta > 0)
+      if($bandera = true)
       {
         echo 'true';
       }
@@ -329,11 +324,9 @@ class Cevento extends CI_Controller
     {
       $id_evento = $this->input->post('id');
 
-      $this->mevento->eventoRealizadoConsulta($id_evento);
+      $bandera = $this->mevento->eventoRealizadoConsulta($id_evento);
 
-      $cuenta = $this->session->userdata('casistencia_id');
-
-      if($cuenta > 0)
+      if($bandera = true)
       {
         echo 'true';
       }

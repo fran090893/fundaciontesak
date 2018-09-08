@@ -17,12 +17,12 @@
 
                     foreach($resultados2 as $filas2)
                     {
-                      echo' <td>'.$filas2->evento.'</br>';
+                      echo' <th>'.$filas2->evento.'</br>';
                     }
 
                     foreach ($resultados1 as $filas1)
                     {
-                      echo'<tr><td>  '.$filas1->nombre.'</td>';
+                      echo'<tr><td>  '.$filas1->alumno_nombre.' '.$filas1->alumno_apellido.'</td>';
 
                       $arr1 = str_split($filas1->asistencia);
 
@@ -42,7 +42,7 @@
 
                         }
 
-                      echo '</td>';
+                      echo '</th>';
                       echo '</tr>';
                     }
                   ?>

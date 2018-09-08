@@ -56,8 +56,6 @@ class Mevento extends CI_Model
   {
     $c="INSERT INTO asistencia (id_asistencia, id_alumno, id_evento, asistencia) VALUES(null, '".$arreglo['alumno_id1']."','".$arreglo['evento_id1']."','".$arreglo['asistencia1']."') ";
     $resultados = $this->db->query($c);
-    $n['casistencia_id'] = $resultados->num_rows();
-    $this->session->set_userdata($n);
 
     return $resultados;
   }
@@ -66,15 +64,13 @@ class Mevento extends CI_Model
   {
     $c = "UPDATE evento SET estado = '1' WHERE evento.id_evento = '".$id_evento."' ";
     $resultados = $this->db->query($c);
-    $n['crealizado_id'] = $resultados->num_rows();
-    $this->session->set_userdata($n);
-
+    
     return $resultados;
   }
 
   public function reporteGeneralConsulta1($id_grupo)
   {
-    $c ="SELECT alumno.alumno_nombre AS nombre, alumno.id_grupo,alumno.alumno_apellido, GROUP_CONCAT(asistencia) as asistencia, GROUP_CONCAT(evento.evento_nombre SEPARATOR ' | ') AS evento, GROUP_CONCAT(evento.fecha SEPARATOR ' | ') AS fecha FROM asistencia INNER JOIN alumno ON asistencia.id_alumno = alumno.id_alumno INNER JOIN evento ON asistencia.id_evento = evento.id_evento WHERE evento.estado = 1 AND alumno.id_grupo= '".$id_grupo."' GROUP BY alumno.id_alumno";
+    $c ="SELECT alumno.alumno_nombre, alumno.id_grupo,alumno.alumno_apellido, GROUP_CONCAT(asistencia) as asistencia, GROUP_CONCAT(evento.evento_nombre SEPARATOR ' | ') AS evento, GROUP_CONCAT(evento.fecha SEPARATOR ' | ') AS fecha FROM asistencia INNER JOIN alumno ON asistencia.id_alumno = alumno.id_alumno INNER JOIN evento ON asistencia.id_evento = evento.id_evento WHERE evento.estado = 1 AND alumno.id_grupo= '".$id_grupo."' GROUP BY alumno.id_alumno";
     $resultados1 = $this->db->query($c);
     $row1 = $resultados1->result();
     return $row1;
