@@ -35,12 +35,12 @@ $(document).ready(function(){
 	//result es lo que envias desde tu metodo en el controlador yo le enviaria un tru o false
 		if(result)
 		{
-		 alert('asistencia completada');
+		 alert('Asistencia completada');
      //header 'eventos_realizados.php';
 		}
 		else
 		{
-		   // mostrar error que no se inserto
+		 alert('No se inserto nada');
 		}
 	}
 });

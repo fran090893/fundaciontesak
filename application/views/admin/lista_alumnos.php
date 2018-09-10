@@ -6,7 +6,7 @@ if($error == 's')
           <br>
           <div class="alert alert-danger">
             <button class="close" data-dismiss="alert"><span>&times;</span> </button>
-            <strong>¡Alerta! </strong> No se pudo realizar la operación registro.
+            <strong>¡Alerta! </strong> No se pudo realizar la operación solicitada.
           </div>';
 }
 else

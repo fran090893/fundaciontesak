@@ -204,13 +204,13 @@ class Cgrupo extends  CI_Controller
                      <td>'.$filas->telefonos.'</td>
                      <td>'.$filas->departamento_nombre.'</td>
                      <td>
-                       <a href="v_actualizarGrupo?id='.$filas->id_grupo.'" class="btn btn-success btn-md" ><i class="far fa-edit"></i></a>
-                       <a href="eliminarGrupo?id='.$filas->id_grupo.'" class="confirmation btn btn-danger btn-md"><i class="far fa-trash-alt"></i></a>
-                       <a href="'.$lk.''.$filas->id_grupo.'" class="btn btn-info btn-md"><i class="fas fa-list-ul"></i></a>
+                       <a href="v_actualizarGrupo?id='.$filas->id_grupo.'" class="btn btn-success btn-md" title="Editar datos de un grupo"><i class="far fa-edit"></i></a>
+                       <a href="eliminarGrupo?id='.$filas->id_grupo.'" class="confirmation btn btn-danger btn-md" title="Eliminar grupo"><i class="far fa-trash-alt"></i></a>
+                       <a href="'.$lk.''.$filas->id_grupo.'" class="btn btn-primary btn-md" title="Listado de alumnos"><i class="fas fa-list-ul"></i></a>
                      </td>
                      <td>
-                       <a href="'.$lk2.''.$filas->id_grupo.'" class="btn btn-success btn-md" ><i class="far fa-file-excel"></i></a>
-                       <a href="'.$lk1.''.$filas->id_grupo.'" class="btn btn-info btn-md"><i class="fas fa-user-plus"></i></a>
+                       <a href="'.$lk2.''.$filas->id_grupo.'" class="btn btn-success btn-md" title="Agregar tabla de alumnos"><i class="far fa-file-excel"></i></a>
+                       <a href="'.$lk1.''.$filas->id_grupo.'" class="btn btn-primary btn-md" title="Agregar un alumno al grupo"><i class="fas fa-user-plus"></i></a>
                      </td>
             </tr>
              ';
@@ -220,7 +220,7 @@ class Cgrupo extends  CI_Controller
      else
      {
        $salida .= '<tr>
-       <td colspan="6">No hay resultados en su busqueda.</td>
+       <td colspan="6">No hay resultados en su búsqueda.</td>
       </tr>';
      }
 

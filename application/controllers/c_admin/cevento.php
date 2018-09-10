@@ -186,11 +186,11 @@ class Cevento extends CI_Controller
               $salida .='
               <tr id="tr-'.$filas->id_alumno.'">
                       <td>'.$filas->alumno_nombre.' '.$filas->alumno_apellido.'</td>
-                      <td>'.$filas->grupo.' '.$id_evento.'</td>
+                      <td>'.$filas->grupo.'</td>
                       <td>'.$filas->departamento.'</td>
                       <td>
-                        <button class="insertaa btn btn-success btn-md"  data-id="'.$filas->id_alumno.'" data-evento="'.$id_evento.'" ><i class="fas fa-check"></i></button>
-                        <button class="insertab btn btn-danger btn-md" data-id="'.$filas->id_alumno.'"  data-evento="'.$id_evento.'"><i class="fas fa-times"></i></button>
+                        <button class="insertaa btn btn-success btn-md"  data-id="'.$filas->id_alumno.'" data-evento="'.$id_evento.'" title="Asistio" ><i class="fas fa-check"></i></button>
+                        <button class="insertab btn btn-danger btn-md" data-id="'.$filas->id_alumno.'"  data-evento="'.$id_evento.'" title="No asistio"><i class="fas fa-times"></i></button>
                       </td>
              </tr>';
          }
@@ -199,7 +199,7 @@ class Cevento extends CI_Controller
       else
       {
         $salida .= '<tr>
-        <td colspan="4">No hay resultados en su busqueda.</td>
+        <td colspan="4">No hay resultados en su búsqueda.</td>
        </tr>';
       }
 
@@ -230,7 +230,7 @@ class Cevento extends CI_Controller
                       <td>'.date("d/m/Y",strtotime($filas->fecha)).'</td>
                       <td>'.$filas->grupo.'</td>
                       <td>
-                        <a href="v_buscarAsistencia?id='.$filas->id_grupo.'&e='.$filas->id_evento.'" class="btn btn-info btn-md"><i class="fas fa-list-ul"></i></a>
+                        <a href="v_buscarAsistencia?id='.$filas->id_grupo.'&e='.$filas->id_evento.'" title="Listado de alumnos" class="btn btn-primary btn-md"><i class="fas fa-list-ul"></i></a>
                       </td>
              </tr>
               ';
@@ -240,7 +240,7 @@ class Cevento extends CI_Controller
       else
       {
         $salida .= '<tr>
-        <td colspan="4">No hay resultados en su busqueda.</td>
+        <td colspan="4">No hay resultados en su búsqueda.</td>
        </tr>';
       }
 
@@ -362,7 +362,7 @@ class Cevento extends CI_Controller
                       <td>'.$filas->telefonos.'</td>
                       <td>'.$filas->departamento_nombre.'</td>
                       <td>
-                        <a href="v_reporteGeneral?id='.$filas->id_grupo.' " class="btn btn-primary btn-md"><i class="fas fa-list-ul"></i></a>
+                        <a href="v_reporteGeneral?id='.$filas->id_grupo.' " class="btn btn-primary btn-md" title="Reporte de asistencia de alumnos"><i class="fas fa-list-ul"></i></a>
                       </td>
              </tr>
 
@@ -374,7 +374,7 @@ class Cevento extends CI_Controller
       else
       {
         $salida .= '<tr>
-        <td colspan="5">No hay resultados en su busqueda.</td>
+        <td colspan="5">No hay resultados en su búsqueda.</td>
        </tr>';
       }
 
@@ -406,9 +406,9 @@ class Cevento extends CI_Controller
                       <td>'.date("d/m/Y",strtotime($filas->fecha)).'</td>
                       <td>'.$filas->grupo.'</td>
                       <td>
-                        <a href="reiniciarAsistencia?id='.$filas->id_evento.'" class="btn btn-danger btn-md"><i class="fas fa-undo"></i></a>
-                        <a href="v_actualizarEventoRealizado?id='.$filas->id_evento.'" class="btn btn-success btn-md"><i class="far fa-edit"></i></a>
-                        <a href="v_buscarAsistenciaReporte?id='.$filas->id_grupo.'&e='.$filas->id_evento.'" class="btn btn-primary btn-md"><i class="fas fa-list-ul"></i></a>
+                        <a href="reiniciarAsistencia?id='.$filas->id_evento.'" class="btn btn-danger btn-md" title="Reiniciar asistencia del evento"><i class="fas fa-undo"></i></a>
+                        <a href="v_actualizarEventoRealizado?id='.$filas->id_evento.'" class="btn btn-success btn-md" title="Editar evento"><i class="far fa-edit"></i></a>
+                        <a href="v_buscarAsistenciaReporte?id='.$filas->id_grupo.'&e='.$filas->id_evento.'" class="btn btn-primary btn-md" title="Ver listado de asistencia"><i class="fas fa-list-ul"></i></a>
                       </td>
              </tr>
 
@@ -420,7 +420,7 @@ class Cevento extends CI_Controller
       else
       {
         $salida .= '<tr>
-        <td colspan="4">No hay resultados en su busqueda.</td>
+        <td colspan="4">No hay resultados en su búsqueda.</td>
        </tr>';
       }
 
@@ -510,11 +510,11 @@ class Cevento extends CI_Controller
       {
         if($filas->asistencia == 1 )
         {
-          $boton ='<button class="btn btn-success btn-md" ><i class="fas fa-check"></i></button>';
+          $boton ='<button class="btn btn-success btn-md" title="Asistio" ><i class="fas fa-check"></i></button>';
         }
         else
         {
-           $boton ='<button class="btn btn-danger btn-md" ><i class="fas fa-times"></i></button>';
+           $boton ='<button class="btn btn-danger btn-md" title="No asistio" ><i class="fas fa-times"></i></button>';
         }
             $salida .='
             <tr>
@@ -531,7 +531,7 @@ class Cevento extends CI_Controller
     else
     {
       $salida .= '<tr>
-      <td colspan="4">No hay resultados en su busqueda.</td>
+      <td colspan="4">No hay resultados en su búsqueda.</td>
      </tr>';
     }
 

@@ -8,7 +8,7 @@
                   <br>
                   <div class="alert alert-danger">
                     <button class="close" data-dismiss="alert"><span>&times;</span> </button>
-                    <strong>¡Alerta! </strong> No se pudo realizar la operación registro.
+                    <strong>¡Alerta! </strong> No se pudo realizar la operación solicitada.
                   </div>';
         }
         else
@@ -34,44 +34,44 @@
             <div class="card-body">
               <form method="POST" action="<?php echo base_url();?>c_admin/cusuario/agregarUsuario">
                 <div class="form-group">
-                  <label for="nombre_usuario">Nombres</label>
-                  <input class="form-control" id="nombre_usuario" name="nombre_usuario" type="text" aria-describedby="nameHelp" placeholder="Digitar primer y segundo nombre" required="true">
+                  <label for="nombre_usuario">Nombres:</label>
+                  <input class="form-control" id="nombre_usuario" name="nombre_usuario" type="text" aria-describedby="nameHelp" placeholder="Digitar primer y segundo nombre" required="true" pattern="[A-Z a-z áéíóú ÁÉÍÓÚ Ññ ]+">
                 </div>
 
                 <div class="form-group">
-                  <label for="apellido_usuario">Apellidos</label>
-                  <input class="form-control" id="apellido_usuario" name="apellido_usuario" type="text" aria-describedby="nameHelp" placeholder="Digitar primer y segundo apellido" required="true">
+                  <label for="apellido_usuario">Apellidos:</label>
+                  <input class="form-control" id="apellido_usuario" name="apellido_usuario" type="text" aria-describedby="nameHelp" placeholder="Digitar primer y segundo apellido" required="true" pattern="[A-Z a-z áéíóú ÁÉÍÓÚ Ññ ]+">
                 </div>
 
                 <div class="form-group">
-                  <label for="correo">Correo eletrónico</label>
-                  <input class="form-control" id="correo" name="correo" type="text" aria-describedby="nameHelp" placeholder="Digitar correo electrónico" required="true">
+                  <label for="correo">Correo eletrónico:</label>
+                  <input class="form-control" id="correo" name="correo" type="email" aria-describedby="nameHelp" placeholder="Digitar correo electrónico" required="true">
                 </div>
 
                 <div class="form-group">
-                  <label for="telefono">Teléfono</label>
+                  <label for="telefono">Teléfono:</label>
                   <input class="form-control" id="telefono" name="telefono" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre de usuario" required="true">
                 </div>
 
                 <div class="form-group">
-                  <label for="nombre_us">Nombre de usuario</label>
+                  <label for="nombre_us">Nombre de usuario:</label>
                   <input class="form-control" id="nombre_us" name="nombre_us" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre de usuario" required="true">
                 </div>
 
                 <div class="form-group">
-                  <label for="contra_us">Contraseña</label>
+                  <label for="contra_us">Contraseña:</label>
                   <input class="form-control" id="contra_us" name="contra_us" type="password" aria-describedby="nameHelp" placeholder="Contraseña" required="true">
                 </div>
 
                 <div class="form-group">
-                  <label for="contra_us1">Confirmar contraseña</label>
+                  <label for="contra_us1">Confirmar contraseña:</label>
                   <input class="form-control" id="contra_us1" name="contra_usq" type="password" aria-describedby="nameHelp" placeholder="Confirmar contraseña" required="true">
                 </div>
 
                 <div class="form-group">
-                  <label for="dept">Departamento</label>
-                  <select class="form-control"  id="dept" name="dept" required="true">
-                    <option value="0">Seleccionar</option>
+                  <label for="dept">Departamento:</label>
+                  <select class="custom-select"  id="dept" name="dept" required>
+                    <option value="">Seleccionar</option>
                     <?php
                       foreach($depts as $opc)
                       {
@@ -82,9 +82,9 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="cargo">Cargo</label>
-                  <select class="form-control"  id="cargo" name="cargo" required="true">
-                    <option value="0">Seleccionar</option>
+                  <label for="cargo">Cargo:</label>
+                  <select class="custom-select"  id="cargo" name="cargo" required>
+                    <option value="">Seleccionar</option>
                     <?php
                       foreach($cargos as $opc)
                       {

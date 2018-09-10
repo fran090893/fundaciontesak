@@ -8,7 +8,7 @@
                   <br>
                   <div class="alert alert-danger">
                     <button class="close" data-dismiss="alert"><span>&times;</span> </button>
-                    <strong>¡Alerta! </strong> No se pudo realizar la operación registro.
+                    <strong>¡Alerta! </strong> No se pudo realizar la operación solicitada.
                   </div>';
         }
         else
@@ -34,12 +34,12 @@
           <div class="card-body">
             <form method="POST" action="agregarDept">
                 <div class="form-group">
-                  <label for="nombre_evento">Nombre del departamento</label>
-                  <input class="form-control" id="nombre_dept" name="nombre_dept" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del departamento" required="true">
+                  <label for="nombre_evento">Nombre del departamento:</label>
+                  <input class="form-control" id="nombre_dept" name="nombre_dept" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del departamento" required="true" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+">
                 </div>
                 <div class="form-group">
-                  <label for="descripcion_evento">Descipción</label>
-                  <input class="form-control" id="descripcion_dept" name="descripcion_dept" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)">
+                  <label for="descripcion_evento">Descipción:</label>
+                  <input class="form-control" id="descripcion_dept" name="descripcion_dept" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+">
                 </div>
                 <div class="form-group">
                   <input class="btn btn-success btn-block" type="submit" value="Agregar departamento">

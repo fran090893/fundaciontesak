@@ -56,6 +56,14 @@ class Malumno extends CI_Model
     return $row;
   }
 
+  public function consultarAlumnoID($id_alumno)
+  {
+    $c ="SELECT * FROM alumno WHERE id_alumno='".$id_alumno."'";
+    $resultados = $this->db->query($c);
+    $row = $resultados->result();
+    return $row;
+  }
+
   public function agregarTablaConsulta($arreglo, $id_grupo)
   {
     $c ="INSERT INTO alumno(alumno_nombre, alumno_apellido,alumno_fecha,alumno_sexo, alumno_instituto, id_grupo) VALUES('".$arreglo['nombre']."','".$arreglo['apellido']."','".$arreglo['fecha']."','".$arreglo['sexo']."','".$arreglo['instituto']."','".$id_grupo."')";

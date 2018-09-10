@@ -10,7 +10,7 @@
                       <br>
                       <div class="alert alert-danger">
                         <button class="close" data-dismiss="alert"><span>&times;</span> </button>
-                        <strong>¡Alerta! </strong> No se pudo realizar la operación registro.
+                        <strong>¡Alerta! </strong> No se pudo realizar la operación solicitada.
                       </div>';
             }
             else
@@ -52,7 +52,7 @@
                       <tr>
                         <td>'.$filas->departamento_nombre.'</td>
                         <td>'.$filas->departamento_descripcion.'</td>
-                        <td><a href="v_actualizarDept?id='.$filas->id_departamento.'" class="btn btn-success btn-md" ><i class="far fa-edit"></i></td>
+                        <td><a href="v_actualizarDept?id='.$filas->id_departamento.'" class="btn btn-success btn-md" title="Actualizar datos de departamento" ><i class="far fa-edit"></i></td>
                       </tr>
                       ';
                     }

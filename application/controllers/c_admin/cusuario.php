@@ -211,8 +211,8 @@ class Cusuario extends CI_Controller
                       <td>'.$filas->usuario_correo.'</td>
                       <td>'.$filas->usuario_telefono.'</td>
                       <td>
-                        <a href="v_actualizarUsuario?id='.$filas->id_usuario.'" class="btn btn-success btn-md" ><i class="far fa-edit"></i></a>
-                        <a href="eliminarUsuario?id='.$filas->id_usuario.'" class="btn btn-danger btn-md"><i class="far fa-trash-alt"></i></a>
+                        <a href="v_actualizarUsuario?id='.$filas->id_usuario.'" class="btn btn-success btn-md" title="Editar datos de un usuario" ><i class="far fa-edit"></i></a>
+                        <a href="eliminarUsuario?id='.$filas->id_usuario.'" class="btn btn-danger btn-md" title="Eliminar usuario"><i class="far fa-trash-alt"></i></a>
                       </td>
              </tr>
               ';
@@ -222,7 +222,7 @@ class Cusuario extends CI_Controller
       else
       {
         $salida .= '<tr>
-        <td colspan="7">No hay resultados en su busqueda.</td>
+        <td colspan="7">No hay resultados en su búsqueda.</td>
        </tr>';
       }
 

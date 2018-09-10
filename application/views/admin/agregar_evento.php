@@ -8,7 +8,7 @@
                   <br>
                   <div class="alert alert-danger">
                     <button class="close" data-dismiss="alert"><span>&times;</span> </button>
-                    <strong>¡Alerta! </strong> No se pudo realizar la operación registro.
+                    <strong>¡Alerta! </strong> No se pudo realizar la operación solicitada.
                   </div>';
         }
         else
@@ -34,23 +34,23 @@
             <div class="card-body">
               <form method="POST" action="<?php echo base_url();?>c_admin/cevento/agregarEvento">
                 <div class="form-group">
-                  <label for="nombre_evento">Nombre del evento</label>
-                  <input class="form-control" id="nombre_evento" name="nombre_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del evento" required="true">
+                  <label for="nombre_evento">Nombre del evento:</label>
+                  <input class="form-control" id="nombre_evento" name="nombre_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del evento" required="true" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+">
                 </div>
                 <div class="form-group">
-                  <label for="descripcion_evento">Descipción</label>
-                  <input class="form-control" id="descripcion_evento" name="descripcion_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)" required="true">
+                  <label for="descripcion_evento">Descipción:</label>
+                  <input class="form-control" id="descripcion_evento" name="descripcion_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)" required="true" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+">
                 </div>
 
                 <div class="form-group">
-                  <label for="fecha">Fecha de evento</label>
+                  <label for="fecha">Fecha de evento:</label>
                   <input class="form-control" id="fecha" name="fecha" type="date" aria-describedby="nameHelp"  required="true">
                 </div>
 
                 <div class="form-group">
-                  <label for="grupo">Grupo</label>
-                  <select class="form-control"  id="grupo" name="grupo" required="true">
-                    <option value="0">Seleccionar</option>
+                  <label for="grupo">Grupo:</label>
+                  <select class="custom-select"  id="grupo" name="grupo" required>
+                    <option value="">Seleccionar</option>
                     <?php
                     foreach($grupos as $opc)
                     {

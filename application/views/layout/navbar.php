@@ -90,9 +90,9 @@
         <span>Estadisticas</span>
       </a>
       <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-        <a class="dropdown-item" href="login.html">Asistencia anual</a>
-        <a class="dropdown-item" href="register.html">Asistencia grupal</a>
-        <a class="dropdown-item" href="forgot-password.html">Por departamento</a>
+        <a class="dropdown-item" href="<?php echo base_url('c_admin/cestadistica/v_EstadisticaAnual'); ?>">Asistencia anual</a>
+        <a class="dropdown-item" href="<?php echo base_url('c_admin/cestadistica/v_buscarEstadisticaGrupal');?>">Asistencia grupal</a>
+        <a class="dropdown-item" href="<?php echo base_url('c_admin/cestadistica/v_EstadisticaDept');?>">Por departamento</a>
       </div>
     </li>
   </ul>

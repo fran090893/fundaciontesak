@@ -35,36 +35,36 @@
             <form method="POST" action="<?php base_url('c_admin/cgrupo/agregarGrupo');?>">
               <div class="form-group">
                 <label for="nombre_evento">Nombre del grupo:</label>
-                <input class="form-control" id="nombre_grupo" name="nombre_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del evento" required="true">
+                <input class="form-control" id="nombre_grupo" name="nombre_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del grupo" required="true" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+">
               </div>
               <div class="form-group">
                 <label for="descripcion_grupo">Descipción del grupo:</label>
-                <input class="form-control" id="descripcion_grupo" name="descripcion_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)">
+                <input class="form-control" id="descripcion_grupo" name="descripcion_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+">
               </div>
               <div class="form-group">
                 <label for="direccion">Dirección:</label>
-                <input class="form-control" id="direccion" name="direccion_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar dirección (centro escolar o institución)" required="true">
+                <input class="form-control" id="direccion" name="direccion_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar dirección (centro escolar o institución)" required="true" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+">
               </div>
               <div class="form-group">
                 <label for="municipio">Municipio:</label>
-                <input class="form-control" id="municipio" name="municipio_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar municipio (centro escolar o institución)" required="true">
+                <input class="form-control" id="municipio" name="municipio_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar municipio (centro escolar o institución)" required="true" pattern="[A-Z a-z áéíóú ÁÉÍÓÚ Ññ ]+">
               </div>
               <div class="form-group">
                 <label for="telefono_grupo">Teléfono:</label>
-                <input class="form-control" id="telefono_grupo" name="telefono_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar teléfono (centro escolar o institución)">
+                <input class="form-control" id="telefono_grupo" name="telefono_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar teléfono (centro escolar o institución) (ej. 2222-2222)" pattern="\d{4}[\-]\d{4}">
               </div>
               <div class="form-group">
                 <label for="nombre_encargado">Encargado:</label>
-                <input class="form-control" id="nombre_encargado" name="encargado_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del encargado" required="true">
+                <input class="form-control" id="nombre_encargado" name="encargado_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del encargado" required="true" pattern="[A-Z a-z áéíóú ÁÉÍÓÚ Ññ ]+">
               </div>
               <div class="form-group">
                 <label for="celular_grupo">Teléfono Encargado:</label>
-                <input class="form-control" id="celular_grupo" name="celular_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar teléfono del encargado" required="true">
+                <input class="form-control" id="celular_grupo" name="celular_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar teléfono del encargado (ej. 2222-2222)" required="true" pattern="\d{4}[\-]\d{4}">
               </div>
               <div class="form-group">
                 <label for="dept">Departamento:</label>
-                <select class="form-control"  id="dept" name="dept" required="true">
-                  <option value="0">Seleccionar</option>
+                <select class="custom-select"  id="dept" name="dept" required>
+                  <option value="">Seleccionar</option>
                   <?php
                   foreach($depts as $opc)
                   {

@@ -62,7 +62,7 @@ class Calumno extends CI_Controller
       $id_alumno = $this->input->get('id',TRUE);
       $g['id_alumno'] = $id_alumno;
       $this->session->set_userdata($g);
-      $datos['actualizar'] = $this->malumno->consultarAlumno($id_alumno);
+      $datos['actualizar'] = $this->malumno->consultarAlumnoID($id_alumno);
       $titulo['title'] = 'Actualizar alumno | Fundación Tesak';
       $this->load->view('layout/header', $titulo);
       $this->load->view('admin/actualizar_alumno',$datos);
@@ -93,8 +93,8 @@ class Calumno extends CI_Controller
                       <td>'.$filas->grupo.'</td>
                       <td>'.$filas->nombre_dept.'</td>
                       <td>
-                        <a href="v_actualizarAlumno?id='.$filas->id_alumno.'" class="btn btn-success btn-md" ><i class="far fa-edit"></i></a>
-                        <a href="eliminarAlumno?id='.$filas->id_alumno.'" class="btn btn-danger btn-md"><i class="far fa-trash-alt"></i></a>
+                        <a href="v_actualizarAlumno?id='.$filas->id_alumno.'" class="btn btn-success btn-md" title="Editar datos de un alumno"><i class="far fa-edit"></i></a>
+                        <a href="eliminarAlumno?id='.$filas->id_alumno.'" class="btn btn-danger btn-md" title="Eliminar alumno"><i class="far fa-trash-alt"></i></a>
                       </td>
              </tr>
               ';
@@ -104,7 +104,7 @@ class Calumno extends CI_Controller
       else
       {
         $salida .= '<tr>
-        <td colspan="6">No hay resultados en su busqueda.</td>
+        <td colspan="6">No hay resultados en su búsqueda.</td>
        </tr>';
       }
 

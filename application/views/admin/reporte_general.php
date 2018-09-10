@@ -31,11 +31,11 @@
                             echo '<td>';
                             if( $arr1[$i] == 1 )
                             {
-                              echo '<button class="btn btn-success btn-md" ><i class="fas fa-check"></i></button>';
+                              echo '<button class="btn btn-success btn-md" title="Asistio"><i class="fas fa-check"></i></button>';
 
                             }else
                             {
-                              echo '<button class="btn btn-danger btn-md" ><i class="fas fa-times"></i></button>';
+                              echo '<button class="btn btn-danger btn-md" title="No asistio"><i class="fas fa-times"></i></button>';
 
                             }'</td>';
 

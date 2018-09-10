@@ -8,7 +8,6 @@
                   <p>Nombre de usuario:<strong> <?php echo $this->session->userdata('usuario');  ?></strong></p>
                   <p>Teléfono: <strong><?php echo $this->session->userdata('telefono');  ?></strong></p>
                   <p>Correo electrónico: <strong><?php echo $this->session->userdata('correo');  ?></strong> </p>
-            </div>
           </div>
         </div>
       </div>
