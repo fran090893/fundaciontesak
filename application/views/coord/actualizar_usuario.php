@@ -48,19 +48,6 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="dept">Departamento:</label>
-                  <select class="custom-select"  id="dept" name="dept" required>
-                    <option value="">Seleccionar</option>
-                    <?php
-                      foreach($depts as $opc)
-                      {
-                        echo '<option selected="'.$campo->id_departamento.'" value="'.$opc->id_departamento.'">'.$opc->departamento_nombre.'</option>';
-                      }
-                     ?>
-                 </select>
-                </div>
-
-                <div class="form-group">
                   <label for="cargo">Cargo:</label>
                   <select class="custom-select"  id="cargo" name="cargo" required>
                     <option value="">Seleccionar</option>

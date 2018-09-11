@@ -32,7 +32,7 @@
         <div class="card card-register mx-auto mt-5">
           <div class="card-header"><h3 style="text-align:center;"><i class="fas fa-fw fa-users"></i> Crear un grupo</h3></div>
           <div class="card-body">
-            <form method="POST" action="<?php echo base_url('c_admin/cgrupo/agregarGrupo');?>">
+            <form method="POST" action="<?php echo base_url('c_coord/cgrupocd/agregarGrupo');?>">
               <div class="form-group">
                 <label for="nombre_evento">Nombre del grupo:</label>
                 <input class="form-control" id="nombre_grupo" name="nombre_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del grupo" required="true" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+">
@@ -60,18 +60,6 @@
               <div class="form-group">
                 <label for="celular_grupo">Teléfono Encargado:</label>
                 <input class="form-control" id="celular_grupo" name="celular_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar teléfono del encargado (ej. 2222-2222)" required="true" pattern="\d{4}[\-]\d{4}">
-              </div>
-              <div class="form-group">
-                <label for="dept">Departamento:</label>
-                <select class="custom-select"  id="dept" name="dept" required>
-                  <option value="">Seleccionar</option>
-                  <?php
-                  foreach($depts as $opc)
-                  {
-                    echo '<option value="'.$opc->id_departamento.'">'.$opc->departamento_nombre.'</option>';
-                  }
-                   ?>
-               </select>
               </div>
               <div class="form-group">
                 <input class="btn btn-success btn-block" type="submit" value="Crear grupo">

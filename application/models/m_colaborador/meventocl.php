@@ -1,16 +1,9 @@
 <?php
-class Mevento extends CI_Model
+class Meventocl extends CI_Model
 {
   function __construct()
   {
     parent::__construct();
-  }
-
-  public function agregarEvento($arreglo)
-  {
-    $c ="INSERT INTO evento VALUES(null,'".$arreglo['nombre_evento']."','".$arreglo['descripcion_evento']."','".$arreglo['grupo']."','".$arreglo['fecha']."','".$arreglo['estado']."')";
-    $resultados = $this->db->query($c);
-    return $resultados;
   }
 
   public function buscarEventoProximo($busqueda1)
@@ -139,14 +132,6 @@ class Mevento extends CI_Model
     $resultados1 = $this->db->query($c);
     $row1 = $resultados1->result();
     return $row1;
-  }
-
-  public function actualizarEventoRealizado($arreglo)
-  {
-    $id_evento = $this->session->userdata('e_realizado_id');
-    $c ="UPDATE evento SET evento_nombre='".$arreglo['nombre_evento']."',evento_descripcion='".$arreglo['descripcion_evento']."',id_grupo='".$arreglo['grupo']."' WHERE id_evento='".$id_evento."' ";
-    $resultados = $this->db->query($c);
-    return $resultados;
   }
 
   public function buscarReporteAsistencia($busqueda1, $id_evento)

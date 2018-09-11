@@ -1,11 +1,11 @@
 <?php
-class Cevento extends CI_Controller
+class Ceventocd extends CI_Controller
 {
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_admin/mevento');
-    $this->load->model('m_admin/mgrupo');
+    $this->load->model('m_coord/meventocd');
+    $this->load->model('m_coord/mgrupocd');
   }
 
   public function v_agregarEvento()
@@ -17,11 +17,11 @@ class Cevento extends CI_Controller
     }
     else
     {
-      $datos['grupos'] = $this->mgrupo->consultarGrupo();
+      $datos['grupos'] = $this->mgrupocd->consultarGrupo();
       $datos['error'] = '';
       $datos['title'] = 'Agregar evento | Fundación Tesak';
       $this->load->view('layout/header', $datos);
-      $this->load->view('admin/agregar_evento',$datos);
+      $this->load->view('coord/agregar_evento',$datos);
       $this->load->view('layout/scripting');
     }
 
@@ -39,7 +39,7 @@ class Cevento extends CI_Controller
       $datos['error'] = '';
       $datos['title'] = 'Eventos proximos | Fundación Tesak';
       $this->load->view('layout/header',$datos);
-      $this->load->view('admin/eventos_proximos',$datos);
+      $this->load->view('coord/eventos_proximos',$datos);
       $this->load->view('layout/scripting');
 
     }
@@ -57,7 +57,7 @@ class Cevento extends CI_Controller
       $datos['error'] = '';
       $datos['title'] = 'Eventos realizados | Fundación Tesak';
       $this->load->view('layout/header',$datos);
-      $this->load->view('admin/eventos_realizados',$datos);
+      $this->load->view('coord/eventos_realizados',$datos);
       $this->load->view('layout/scripting');
 
     }
@@ -83,7 +83,7 @@ class Cevento extends CI_Controller
       $datos['error'] = '';
       $titulo['title'] = 'Lista de asistencia | Fundación Tesak';
       $this->load->view('layout/header',$titulo);
-      $this->load->view('admin/lista_asistencia',$datos);
+      $this->load->view('coord/lista_asistencia',$datos);
     }
   }
 
@@ -97,11 +97,11 @@ class Cevento extends CI_Controller
     else
     {
       $id_grupo = $this->input->get('id', TRUE);
-      $datos['resultados1'] = $this->mevento->reporteGeneralConsulta1($id_grupo);
-      $datos['resultados2'] = $this->mevento->reporteGeneralConsulta2($id_grupo);
+      $datos['resultados1'] = $this->meventocd->reporteGeneralConsulta1($id_grupo);
+      $datos['resultados2'] = $this->meventocd->reporteGeneralConsulta2($id_grupo);
       $titulo['title'] = 'Reporte general | Fundación Tesak';
       $this->load->view('layout/header',$titulo);
-      $this->load->view('admin/reporte_general',$datos);
+      $this->load->view('coord/reporte_general',$datos);
       $this->load->view('layout/scripting');
     }
   }
@@ -117,7 +117,7 @@ class Cevento extends CI_Controller
     {
       $titulo['title'] = 'Asistencia grupal | Fundación Tesak';
       $this->load->view('layout/header',$titulo);
-      $this->load->view('admin/asistencia_grupal');
+      $this->load->view('coord/asistencia_grupal');
       $this->load->view('layout/scripting');
     }
   }
@@ -132,13 +132,15 @@ class Cevento extends CI_Controller
     else
     {
       $id_evento = $this->input->get('id',TRUE);
+      $id_grupo = $this->input->get('g', TRUE);
       $g['e_realizado_id'] = $id_evento;
+      $g['e_realizado_id_cd'] = $id_grupo;
       $this->session->set_userdata($g);
-      $datos['actualizar'] = $this->mevento->consultarEventoRealizado($id_evento);
-      $datos['g_consulta1'] = $this->mgrupo->consultarGrupo();
+      $datos['actualizar'] = $this->meventocd->consultarEventoRealizado($id_evento);
+      $datos['g_consulta1'] = $this->mgrupocd->consultarGrupo();
       $titulo['title'] = 'Actualizar evento realizado | Fundación Tesak';
       $this->load->view('layout/header', $titulo);
-      $this->load->view('admin/actualizar_evento',$datos);
+      $this->load->view('coord/actualizar_evento',$datos);
       $this->load->view('layout/scripting');
     }
   }
@@ -157,7 +159,7 @@ class Cevento extends CI_Controller
       $this->session->set_userdata($n);
       $datos['title'] = 'Listado de asistencia | Fundación Tesak';
       $this->load->view('layout/header',$datos);
-      $this->load->view('admin/reporte_asistencia',$datos);
+      $this->load->view('coord/reporte_asistencia',$datos);
       $this->load->view('layout/scripting');
 
     }
@@ -174,7 +176,7 @@ class Cevento extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->mevento->buscarAsistencia($busqueda);
+      $resultados = $this->meventocd->buscarAsistencia($busqueda);
       $id_evento = $this->session->userdata('id_evento3');
 
 
@@ -217,7 +219,7 @@ class Cevento extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->mevento->buscarEventoProximo($busqueda);
+      $resultados = $this->meventocd->buscarEventoProximo($busqueda);
 
       if($this->session->userdata('eventos_p_id') > 0)
       {
@@ -262,24 +264,24 @@ class Cevento extends CI_Controller
         $arreglo['grupo'] = $this->input->post('grupo');
         $arreglo['estado'] = '0';
 
-        $bandera = $this->mevento->agregarEvento($arreglo);
+        $bandera = $this->meventocd->agregarEvento($arreglo);
 
         if($bandera = true)
         {
-          $datos['grupos'] = $this->mgrupo->consultarGrupo();
+          $datos['grupos'] = $this->mgrupocd->consultarGrupo();
           $datos['error'] = 'n';
           $datos['title'] = 'Agregar evento | Fundación Tesak';
           $this->load->view('layout/header', $datos);
-          $this->load->view('admin/agregar_evento',$datos);
+          $this->load->view('coord/agregar_evento',$datos);
           $this->load->view('layout/scripting');
         }
         else
         {
-          $datos['grupos'] = $this->mgrupo->consultarGrupo();
+          $datos['grupos'] = $this->mgrupocd->consultarGrupo();
           $datos['error'] = 's';
           $datos['title'] = 'Agregar evento | Fundación Tesak';
           $this->load->view('layout/header', $datos);
-          $this->load->view('admin/agregar_evento',$datos);
+          $this->load->view('coord/agregar_evento',$datos);
           $this->load->view('layout/scripting');
         }
     }
@@ -298,7 +300,7 @@ class Cevento extends CI_Controller
       $arreglo['evento_id1'] = $this->input->post('evento');
       $arreglo['asistencia1'] = $this->input->post('asistente');
 
-      $bandera = $this->mevento->asistenciaConsulta($arreglo);
+      $bandera = $this->meventocd->asistenciaConsulta($arreglo);
 
       if($bandera = true)
       {
@@ -323,7 +325,7 @@ class Cevento extends CI_Controller
     {
       $id_evento = $this->input->post('id');
 
-      $bandera = $this->mevento->eventoRealizadoConsulta($id_evento);
+      $bandera = $this->meventocd->eventoRealizadoConsulta($id_evento);
 
       if($bandera = true)
       {
@@ -348,7 +350,7 @@ class Cevento extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->mevento->buscarAsistenciaGrupal($busqueda);
+      $resultados = $this->meventocd->buscarAsistenciaGrupal($busqueda);
 
       if($this->session->userdata('grupal_id') > 0)
       {
@@ -393,7 +395,7 @@ class Cevento extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->mevento->buscarEventoRealizadoConsulta($busqueda);
+      $resultados = $this->meventocd->buscarEventoRealizadoConsulta($busqueda);
 
       if($this->session->userdata('realizado_id') > 0)
       {
@@ -406,7 +408,7 @@ class Cevento extends CI_Controller
                       <td>'.$filas->grupo.'</td>
                       <td>
                         <a href="reiniciarAsistencia?id='.$filas->id_evento.'" class="btn btn-danger btn-md" title="Reiniciar asistencia del evento"><i class="fas fa-undo"></i></a>
-                        <a href="v_actualizarEventoRealizado?id='.$filas->id_evento.'" class="btn btn-success btn-md" title="Editar evento"><i class="far fa-edit"></i></a>
+                        <a href="v_actualizarEventoRealizado?id='.$filas->id_evento.'&g='.$filas->id_grupo.'" class="btn btn-success btn-md" title="Editar evento"><i class="far fa-edit"></i></a>
                         <a href="v_buscarAsistenciaReporte?id='.$filas->id_grupo.'&e='.$filas->id_evento.'" class="btn btn-primary btn-md" title="Ver listado de asistencia"><i class="fas fa-list-ul"></i></a>
                       </td>
              </tr>
@@ -438,16 +440,16 @@ class Cevento extends CI_Controller
     {
       $id_evento = $this->input->get('id', TRUE);
 
-      $bandera1 = $this->mevento->borrarAsistencia($id_evento);
+      $bandera1 = $this->meventocd->borrarAsistencia($id_evento);
 
-      $bandera2 = $this->mevento->updateEstadoEvento($id_evento);
+      $bandera2 = $this->meventocd->updateEstadoEvento($id_evento);
 
       if($bandera1 = true & $bandera2 = true)
       {
         $datos['error'] = 'n';
         $datos['title'] = 'Eventos realizados | Fundación Tesak';
         $this->load->view('layout/header',$datos);
-        $this->load->view('admin/eventos_realizados',$datos);
+        $this->load->view('coord/eventos_realizados',$datos);
         $this->load->view('layout/scripting');
       }
       else
@@ -455,7 +457,7 @@ class Cevento extends CI_Controller
         $datos['error'] = 's';
         $datos['title'] = 'Eventos realizados | Fundación Tesak';
         $this->load->view('layout/header',$datos);
-        $this->load->view('admin/eventos_realizados',$datos);
+        $this->load->view('coord/eventos_realizados',$datos);
         $this->load->view('layout/scripting');
       }
     }
@@ -473,16 +475,16 @@ class Cevento extends CI_Controller
     {
       $arreglo['nombre_evento'] = $this->input->post('nombre_evento');
       $arreglo['descripcion_evento'] = $this->input->post('descripcion_evento');
-      $arreglo['grupo'] = $this->input->post('grupo');
+      $arreglo['grupo'] = $this->session->userdata('e_realizado_id_cd');
 
-      $bandera = $this->mevento->actualizarEventoRealizado($arreglo);
+      $bandera = $this->meventocd->actualizarEventoRealizado($arreglo);
 
       if($bandera = true)
       {
         $datos['error'] = 'n';
         $datos['title'] = 'Eventos realizados | Fundación Tesak';
         $this->load->view('layout/header',$datos);
-        $this->load->view('admin/eventos_realizados',$datos);
+        $this->load->view('coord/eventos_realizados',$datos);
         $this->load->view('layout/scripting');
       }
       else
@@ -490,7 +492,7 @@ class Cevento extends CI_Controller
         $datos['error'] = 's';
         $datos['title'] = 'Eventos realizados | Fundación Tesak';
         $this->load->view('layout/header',$datos);
-        $this->load->view('admin/eventos_realizados',$datos);
+        $this->load->view('coord/eventos_realizados',$datos);
         $this->load->view('layout/scripting');
       }
     }
@@ -501,7 +503,7 @@ class Cevento extends CI_Controller
     $salida="";
     $busqueda = $this->input->post('consulta');
     $id_evento = $this->session->userdata('id_e_asistencia');
-    $resultados = $this->mevento->buscarReporteAsistencia($busqueda, $id_evento);
+    $resultados = $this->meventocd->buscarReporteAsistencia($busqueda, $id_evento);
     $boton="";
     if($this->session->userdata('reporte_asistencia1_id') > 0)
     {

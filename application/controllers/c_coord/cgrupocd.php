@@ -1,12 +1,11 @@
 <?php
 
-class Cgrupo extends CI_Controller
+class Cgrupocd extends  CI_Controller
 {
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_admin/mgrupo');
-    $this->load->model('m_admin/mdept');
+    $this->load->model('m_coord/mgrupocd');
   }
 
   public function v_agregarGrupo()//Vista agregar grupo
@@ -18,11 +17,10 @@ class Cgrupo extends CI_Controller
     }
     else
     {
-      $datos['depts'] = $this->mdept->consultarDept();
       $datos['error'] = '';
       $datos['title'] = 'Agregar grupo | Fundación Tesak';
       $this->load->view('layout/header', $datos);
-      $this->load->view('admin/agregar_grupo',$datos);
+      $this->load->view('coord/agregar_grupo',$datos);
       $this->load->view('layout/scripting');
     }
   }
@@ -39,11 +37,10 @@ class Cgrupo extends CI_Controller
       $id_grupo = $this->input->get('id',TRUE);
       $g['id'] = $id_grupo;
       $this->session->set_userdata($g);
-      $datos['actualizar'] = $this->mgrupo->idGrupo($id_grupo);
-      $datos['depts'] = $this->mdept->consultarDept();
+      $datos['actualizar'] = $this->mgrupocd->idGrupo($id_grupo);
       $titulo['title'] = 'Actualizar grupo | Fundación Tesak';
       $this->load->view('layout/header', $titulo);
-      $this->load->view('admin/actualizar_grupo',$datos);
+      $this->load->view('coord/actualizar_grupo',$datos);
       $this->load->view('layout/scripting');
     }
   }
@@ -60,7 +57,7 @@ class Cgrupo extends CI_Controller
       $datos['error'] = '';
       $datos['title'] = 'Grupos disponibles | Fundación Tesak';
       $this->load->view('layout/header',$datos);
-      $this->load->view('admin/ver_grupo',$datos);
+      $this->load->view('coord/ver_grupo',$datos);
       $this->load->view('layout/scripting');
 
     }
@@ -82,16 +79,16 @@ class Cgrupo extends CI_Controller
       $arreglo['telefono_grupo'] = $this->input->post('telefono_grupo');
       $arreglo['encargado_grupo'] = $this->input->post('encargado_grupo');
       $arreglo['celular_grupo'] = $this->input->post('celular_grupo');
-      $arreglo['dept'] = $this->input->post('dept');
+      $arreglo['dept'] = $this->session->userdata('departamento');
 
-      $bandera = $this->mgrupo->actualizarGrupo($arreglo);
+      $bandera = $this->mgrupocd->actualizarGrupo($arreglo);
 
       if($bandera = true)
       {
         $datos['error'] = 'n';
         $datos['title'] = 'Grupos disponibles | Fundación Tesak';
         $this->load->view('layout/header',$datos);
-        $this->load->view('admin/ver_grupo',$datos);
+        $this->load->view('coord/ver_grupo',$datos);
         $this->load->view('layout/scripting');
       }
       else
@@ -99,7 +96,7 @@ class Cgrupo extends CI_Controller
         $datos['error'] = 's';
         $datos['title'] = 'Grupos disponibles | Fundación Tesak';
         $this->load->view('layout/header',$datos);
-        $this->load->view('admin/ver_grupo',$datos);
+        $this->load->view('coord/ver_grupo',$datos);
         $this->load->view('layout/scripting');
       }
     }
@@ -122,16 +119,16 @@ class Cgrupo extends CI_Controller
       $arreglo['telefono_grupo'] = $this->input->post('telefono_grupo');
       $arreglo['encargado_grupo'] = $this->input->post('encargado_grupo');
       $arreglo['celular_grupo'] = $this->input->post('celular_grupo');
-      $arreglo['dept'] = $this->input->post('dept');
+      $arreglo['dept'] = $this->session->userdata('departamento');
 
-      $bandera = $this->mgrupo->agregarGrupo($arreglo);
+      $bandera = $this->mgrupocd->agregarGrupo($arreglo);
 
       if($bandera = true)
       {
         $datos['error'] = 'n';
         $datos['title'] = 'Agregar grupo | Fundación Tesak';
         $this->load->view('layout/header', $datos);
-        $this->load->view('admin/agregar_grupo',$datos);
+        $this->load->view('coord/agregar_grupo',$datos);
         $this->load->view('layout/scripting');
       }
       else
@@ -139,7 +136,7 @@ class Cgrupo extends CI_Controller
         $datos['error'] = 's';
         $datos['title'] = 'Agregar grupo | Fundación Tesak';
         $this->load->view('layout/header', $datos);
-        $this->load->view('admin/agregar_grupo',$datos);
+        $this->load->view('coord/agregar_grupo',$datos);
         $this->load->view('layout/scripting');
       }
     }
@@ -155,14 +152,14 @@ class Cgrupo extends CI_Controller
     else
     {
       $id_grupo = $this->input->get('id', TRUE);
-      $bandera = $this->mgrupo->eliminarGrupom($id_grupo);
+      $bandera = $this->mgrupocd->eliminarGrupom($id_grupo);
 
       if($bandera = true)
       {
         $datos['error'] = 'n';
         $datos['title'] = 'Grupos disponibles | Fundación Tesak';
         $this->load->view('layout/header',$datos);
-        $this->load->view('admin/ver_grupo',$datos);
+        $this->load->view('coord/ver_grupo',$datos);
         $this->load->view('layout/scripting');
       }
       else
@@ -170,7 +167,7 @@ class Cgrupo extends CI_Controller
         $datos['error'] = 's';
         $datos['title'] = 'Grupos disponibles | Fundación Tesak';
         $this->load->view('layout/header',$datos);
-        $this->load->view('admin/ver_grupo',$datos);
+        $this->load->view('coord/ver_grupo',$datos);
         $this->load->view('layout/scripting');
       }
 
@@ -188,10 +185,10 @@ class Cgrupo extends CI_Controller
    {
      $salida="";
      $busqueda = $this->input->post('consulta');
-     $resultados = $this->mgrupo->buscarGrupo($busqueda);
-     $lk = base_url('c_admin/calumno/v_lista_alumnos?id=');
-     $lk1 = base_url('c_admin/calumno/v_agregarAlumno?id=');
-     $lk2 = base_url('c_admin/calumno/v_agregarTabla?id=');
+     $resultados = $this->mgrupocd->buscarGrupo($busqueda);
+     $lk = base_url('c_coord/calumnocd/v_lista_alumnos?id=');
+     $lk1 = base_url('c_coord/calumnocd/v_agregarAlumno?id=');
+     $lk2 = base_url('c_coord/calumnocd/v_agregarTabla?id=');
 
      if($this->session->userdata('n') > 0)
      {

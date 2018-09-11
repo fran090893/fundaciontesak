@@ -37,5 +37,13 @@ class Mdept extends CI_Model
     $row = $resultados->result();
     return $row;
   }
+
+  public function consultarDeptID($id_dept)
+  {
+    $c ="SELECT id_departamento, departamento_nombre, departamento_descripcion FROM departamento WHERE id_departamento = '".$id_dept."'";
+    $resultados = $this->db->query($c);
+    $row = $resultados->result();
+    return $row;
+  }
 }
  ?>

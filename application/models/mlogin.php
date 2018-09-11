@@ -17,7 +17,8 @@ class Mlogin extends CI_Model
       'usuario' => $row['usuario'],
       'cargo' => $row['id_cargo'],
       'telefono' => $row['usuario_telefono'],
-      'correo' => $row['usuario_correo']
+      'correo' => $row['usuario_correo'],
+      'departamento' => $row['id_departamento']
     );
 
     $this->session->set_userdata($usuario_datos);

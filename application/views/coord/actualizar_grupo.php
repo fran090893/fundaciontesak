@@ -36,18 +36,6 @@
                 <label for="celular_grupo">Teléfono Encargado:</label>
                 <input class="form-control" id="celular_grupo" name="celular_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar teléfono del encargado (ej. 2222-2222)" required="true" value="<?php echo $campo->grupo_celular;?>" pattern="\d{4}[\-]\d{4}">
               </div>
-              <div class="form-group">
-                <label for="dept">Departamento:</label>
-                <select class="custom-select"  id="dept" name="dept" required >
-                  <option value="">Seleccionar</option>
-                  <?php
-                  foreach($depts as $opc)
-                  {
-                    echo '<option selected="'.$campo->id_departamento.'" value="'.$opc->id_departamento.'">'.$opc->departamento_nombre.'</option>';
-                  }
-                   ?>
-               </select>
-              </div>
               <br>
               <input class="btn btn-primary btn-block" type="submit" value="Guardar cambios">
             </form>

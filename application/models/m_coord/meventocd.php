@@ -1,5 +1,5 @@
 <?php
-class Mevento extends CI_Model
+class Meventocd extends CI_Model
 {
   function __construct()
   {
@@ -16,11 +16,11 @@ class Mevento extends CI_Model
   public function buscarEventoProximo($busqueda1)
   {
     $id_dept = $this->session->userdata('departamento');
-    $c = "SELECT evento.id_evento,grupo.id_grupo, evento.evento_nombre,evento.fecha, grupo.grupo_nombre AS grupo FROM evento INNER JOIN grupo ON evento.id_grupo = grupo.id_grupo  WHERE evento.estado=0 AND (grupo.id_departamento = '".$id_dept."')";
+    $c = "SELECT evento.id_evento,grupo.id_grupo, evento.evento_nombre,evento.fecha, grupo.grupo_nombre AS grupo FROM evento INNER JOIN grupo ON evento.id_grupo = grupo.id_grupo  WHERE evento.estado=0 AND grupo.id_departamento = '".$id_dept."'";
 
     if(isset($busqueda1))
     {
-      $c = "SELECT evento.id_evento,grupo.id_grupo, evento.evento_nombre,evento.fecha, grupo.grupo_nombre AS grupo FROM evento INNER JOIN grupo ON evento.id_grupo = grupo.id_grupo WHERE evento.estado=0 AND (grupo.id_departamento = '".$id_dept."') AND(evento.evento_nombre LIKE '".$busqueda1."%' OR grupo.grupo_nombre LIKE '".$busqueda1."%' OR evento.fecha LIKE '".$busqueda1."%')";
+      $c = "SELECT evento.id_evento,grupo.id_grupo, evento.evento_nombre,evento.fecha, grupo.grupo_nombre AS grupo FROM evento INNER JOIN grupo ON evento.id_grupo = grupo.id_grupo WHERE evento.estado=0 AND grupo.id_departamento = '".$id_dept."' AND(evento.evento_nombre LIKE '".$busqueda1."%' OR grupo.grupo_nombre LIKE '".$busqueda1."%' OR evento.fecha LIKE '".$busqueda1."%')";
     }
 
     $resultados = $this->db->query($c);
@@ -87,11 +87,12 @@ class Mevento extends CI_Model
 
   public function buscarAsistenciaGrupal($busqueda1)
   {
-    $c ="SELECT id_grupo, grupo_nombre, grupo_direccion, grupo_encargado, CONCAT(grupo_tel,' / ',grupo_celular) AS telefonos ,grupo_descripcion, grupo_municipio, departamento_nombre FROM grupo INNER JOIN departamento ON grupo.id_departamento = departamento.id_departamento";
+    $id_dept = $this->session->userdata('departamento');
+    $c ="SELECT id_grupo, grupo_nombre, grupo_direccion, grupo_encargado, CONCAT(grupo_tel,' / ',grupo_celular) AS telefonos ,grupo_descripcion, grupo_municipio, departamento_nombre FROM grupo INNER JOIN departamento ON grupo.id_departamento = departamento.id_departamento WHERE grupo.id_departamento = '".$id_dept."'";
 
     if(isset($busqueda1))
     {
-      $c ="SELECT id_grupo, grupo_nombre, grupo_direccion, grupo_encargado, CONCAT(grupo_tel,' / ',grupo_celular) AS telefonos ,grupo_descripcion, grupo_municipio, departamento_nombre FROM grupo INNER JOIN departamento ON grupo.id_departamento = departamento.id_departamento WHERE grupo_nombre LIKE '".$busqueda1."%' OR departamento_nombre LIKE '".$busqueda1."%' OR grupo_encargado LIKE '".$busqueda1."%' ";
+      $c ="SELECT id_grupo, grupo_nombre, grupo_direccion, grupo_encargado, CONCAT(grupo_tel,' / ',grupo_celular) AS telefonos ,grupo_descripcion, grupo_municipio, departamento_nombre FROM grupo INNER JOIN departamento ON grupo.id_departamento = departamento.id_departamento WHERE grupo.id_departamento = '".$id_dept."' AND (grupo_nombre LIKE '".$busqueda1."%' OR departamento_nombre LIKE '".$busqueda1."%' OR grupo_encargado LIKE '".$busqueda1."%') ";
     }
 
     $resultados = $this->db->query($c);
@@ -104,11 +105,12 @@ class Mevento extends CI_Model
 
   public function buscarEventoRealizadoConsulta($busqueda1)
   {
-    $c ="SELECT evento.id_evento,grupo.id_grupo, evento.evento_nombre,evento.fecha, grupo.grupo_nombre AS grupo FROM evento INNER JOIN grupo ON evento.id_grupo = grupo.id_grupo WHERE  evento.estado=1 ";
+    $id_dept = $this->session->userdata('departamento');
+    $c ="SELECT evento.id_evento,grupo.id_grupo, evento.evento_nombre,evento.fecha, grupo.grupo_nombre AS grupo FROM evento INNER JOIN grupo ON evento.id_grupo = grupo.id_grupo WHERE  evento.estado=1 AND grupo.id_departamento = '".$id_dept."'";
 
     if(isset($busqueda1))
     {
-      $c ="SELECT evento.id_evento,grupo.id_grupo, evento.evento_nombre,evento.fecha, grupo.grupo_nombre AS grupo FROM evento INNER JOIN grupo ON evento.id_grupo = grupo.id_grupo WHERE  evento.estado=1 AND (evento.evento_nombre LIKE '".$busqueda1."%' OR grupo.grupo_nombre LIKE '".$busqueda1."%')";
+      $c ="SELECT evento.id_evento,grupo.id_grupo, evento.evento_nombre,evento.fecha, grupo.grupo_nombre AS grupo FROM evento INNER JOIN grupo ON evento.id_grupo = grupo.id_grupo WHERE  evento.estado=1 AND grupo.id_departamento = '".$id_dept."' AND (evento.evento_nombre LIKE '".$busqueda1."%' OR grupo.grupo_nombre LIKE '".$busqueda1."%')";
     }
 
     $resultados = $this->db->query($c);
