@@ -639,11 +639,12 @@ class Cevento extends CI_Controller
 
 
     $x = 1;
-    $this->pdf->Cell(14);
+    $this->pdf->Cell(3);
     $this->pdf->Cell(15,6,'Nro.',1,0,'C',1);
     $this->pdf->Cell(50,6,'Apellidos',1,0,'C',1);
     $this->pdf->Cell(50,6,'Nombres',1,0,'C',1);
-    $this->pdf->Cell(50,6,'Asistencia',1,1,'C',1);
+    $this->pdf->Cell(30,6,'Edad',1,0,'C',1);
+    $this->pdf->Cell(40,6,'Asistencia',1,1,'C',1);
 
     foreach ($resultados3 as $tabla)
     {
@@ -655,18 +656,20 @@ class Cevento extends CI_Controller
 
       $this->pdf->SetFont('Arial','',11);
       $this->pdf->SetFillColor(255,255,255);
-      $this->pdf->Cell(14);
+      $this->pdf->Cell(3);
       $this->pdf->Cell(15,6,$x++,1,0,'C',1);
 
       $this->pdf->Cell(50,6,utf8_decode($tabla->alumno_apellido),1,0,'C',1);
       $this->pdf->Cell(50,6,utf8_decode($tabla->alumno_nombre),1,0,'C',1);
+      $this->pdf->Cell(30,6,utf8_decode($tabla->Edad),1,0,'C',1);
+
       if($tabla->asistencia == 1)
       {
-        $this->pdf->Cell(50,6,'Presente',1,0,'C',1);
+        $this->pdf->Cell(40,6,'Presente',1,0,'C',1);
       }
       else if($tabla->asistencia == 0)
       {
-        $this->pdf->Cell(50,6,'Ausente',1,0,'C',1);
+        $this->pdf->Cell(40,6,'Ausente',1,0,'C',1);
       }
 
       $this->pdf->Ln(5);

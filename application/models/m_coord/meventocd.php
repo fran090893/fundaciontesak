@@ -187,7 +187,7 @@ class Meventocd extends CI_Model
 
   public function imprimirListaConsulta3($id_evento)
   {
-    $c ="SELECT grupo.grupo_encargado as encargado,evento.fecha as fecha,alumno.id_alumno,alumno.alumno_nombre, alumno.alumno_apellido , grupo.grupo_nombre AS grupo, asistencia.asistencia,departamento.departamento_nombre AS dept_alumno, evento.evento_nombre FROM asistencia INNER JOIN alumno ON alumno.id_alumno = asistencia.id_alumno INNER JOIN grupo on grupo.id_grupo = alumno.id_grupo INNER JOIN evento on evento.id_grupo = grupo.id_grupo INNER JOIN departamento on departamento.id_departamento = grupo.id_departamento WHERE evento.id_evento ='".$id_evento."' ";
+    $c ="SELECT grupo.grupo_encargado as encargado,evento.fecha as fecha,TIMESTAMPDIFF(YEAR,alumno.alumno_fecha,CURDATE()) AS Edad ,alumno.id_alumno,alumno.alumno_nombre, alumno.alumno_apellido , grupo.grupo_nombre AS grupo, asistencia.asistencia,departamento.departamento_nombre AS dept_alumno, evento.evento_nombre FROM asistencia INNER JOIN alumno ON alumno.id_alumno = asistencia.id_alumno INNER JOIN grupo on grupo.id_grupo = alumno.id_grupo INNER JOIN evento on evento.id_grupo = grupo.id_grupo INNER JOIN departamento on departamento.id_departamento = grupo.id_departamento WHERE evento.id_evento ='".$id_evento."' ";
     $resultados1 = $this->db->query($c);
     $row1 = $resultados1->result();
     return $row1;
