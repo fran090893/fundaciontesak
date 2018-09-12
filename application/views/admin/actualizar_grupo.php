@@ -10,15 +10,15 @@
                 <?php foreach($actualizar as $campo)
                 {?>
                 <label for="nombre_evento">Nombre del grupo:</label>
-                <input class="form-control" id="nombre_grupo" name="nombre_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del evento" required="true" value="<?php echo $campo->grupo_nombre;?>" pattern="[A-Z a-z áéíóú ÁÉÍÓÚ Ññ ]+">
+                <input class="form-control" id="nombre_grupo" name="nombre_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del evento" required="true" value="<?php echo $campo->grupo_nombre;?>" pattern="[A-Z a-z áéíóú ÁÉÍÓÚ Ññ , -  _  # . / ]+">
               </div>
               <div class="form-group">
                 <label for="descripcion_grupo">Descipción del grupo:</label>
-                <input class="form-control" id="descripcion_grupo" name="descripcion_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)" value="<?php echo $campo->grupo_descripcion;?>" pattern="[A-Z a-z áéíóú ÁÉÍÓÚ Ññ ]+">
+                <input class="form-control" id="descripcion_grupo" name="descripcion_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)" value="<?php echo $campo->grupo_descripcion;?>" pattern="[A-Z a-z áéíóú ÁÉÍÓÚ Ññ , -  _  # . / ]+">
               </div>
               <div class="form-group">
                 <label for="direccion">Dirección:</label>
-                <input class="form-control" id="direccion" name="direccion_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar dirección (centro escolar o institución)" required="true" value="<?php echo $campo->grupo_direccion;?>" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+">
+                <input class="form-control" id="direccion" name="direccion_grupo" type="text" aria-describedby="nameHelp" placeholder="Digitar dirección (centro escolar o institución)" required="true" value="<?php echo $campo->grupo_direccion;?>" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ # , -  _  # . / ]+">
               </div>
               <div class="form-group">
                 <label for="municipio">Municipio:</label>

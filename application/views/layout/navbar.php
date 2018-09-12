@@ -8,7 +8,7 @@
 
 
   <!-- Navbar -->
-  <ul class="navbar-nav  d-md-inline-block ml-auto">
+  <ul class="navbar-nav d-md-inline-block ml-auto">
     <li class="nav-item dropdown no-arrow">
       <a class="nav-link dropdown-toggle"  href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-user-circle fa-fw"></i>

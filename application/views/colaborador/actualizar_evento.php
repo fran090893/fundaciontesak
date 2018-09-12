@@ -18,7 +18,7 @@
                 </div>
                 <div class="form-group">
                   <label for="descripcion_evento">Descipción:</label>
-                  <input class="form-control"  value="<?php echo $campo->evento_descripcion; ?>" id="descripcion_evento" name="descripcion_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+" >
+                  <input class="form-control"  value="<?php echo $campo->evento_descripcion; ?>" id="descripcion_evento" name="descripcion_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ , -  _  # . / ]+" >
                 </div>
                 <div class="form-group">
                   <label for="dept">Grupo:</label>

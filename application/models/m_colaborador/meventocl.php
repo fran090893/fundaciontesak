@@ -152,6 +152,30 @@ class Meventocl extends CI_Model
     return $row;
   }
 
+  public function imprimirListaConsulta1($id_grupo, $id_evento)
+  {
+    $c ="SELECT evento.fecha, evento.evento_nombre, grupo.grupo_nombre, grupo.grupo_encargado, departamento.departamento_nombre FROM evento INNER JOIN grupo ON evento.id_grupo = grupo.id_grupo INNER JOIN departamento ON grupo.id_departamento = departamento.id_departamento WHERE evento.id_evento='".$id_evento."' AND grupo.id_grupo='".$id_grupo."'";
+    $resultados1 = $this->db->query($c);
+    $row1 = $resultados1->result();
+    return $row1;
+  }
+
+  public function imprimirListaConsulta2($id_grupo, $id_evento)
+  {
+    $c ="SELECT id_alumno, alumno_nombre,alumno_sexo, alumno_apellido , grupo.grupo_nombre AS grupo, grupo.id_departamento AS dept_alumno, departamento.departamento_nombre AS departamento FROM alumno INNER JOIN grupo on alumno.id_grupo = grupo.id_grupo INNER JOIN departamento on grupo.id_departamento = departamento.id_departamento WHERE NOT EXISTS (SELECT * FROM asistencia WHERE asistencia.id_alumno=alumno.id_alumno AND asistencia.id_evento= '".$id_evento."') AND alumno.id_grupo = '".$id_grupo."'";
+    $resultados1 = $this->db->query($c);
+    $row1 = $resultados1->result();
+    return $row1;
+  }
+
+  public function imprimirListaConsulta3($id_evento)
+  {
+    $c ="SELECT grupo.grupo_encargado as encargado,evento.fecha as fecha,alumno.id_alumno,alumno.alumno_nombre, alumno.alumno_apellido , grupo.grupo_nombre AS grupo, asistencia.asistencia,departamento.departamento_nombre AS dept_alumno, evento.evento_nombre FROM asistencia INNER JOIN alumno ON alumno.id_alumno = asistencia.id_alumno INNER JOIN grupo on grupo.id_grupo = alumno.id_grupo INNER JOIN evento on evento.id_grupo = grupo.id_grupo INNER JOIN departamento on departamento.id_departamento = grupo.id_departamento WHERE evento.id_evento ='".$id_evento."' ";
+    $resultados1 = $this->db->query($c);
+    $row1 = $resultados1->result();
+    return $row1;
+  }
+
 }
 
 

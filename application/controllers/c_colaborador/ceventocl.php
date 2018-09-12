@@ -95,11 +95,15 @@ class Ceventocl extends CI_Controller
     }
     else
     {
+      $id_grupo = $this->input->get('id', TRUE);
+      $id_evento = $this->input->get('e', TRUE);
+      $datos['e1'] = $id_evento;
+      $datos['g11'] = $id_grupo;
       $n['id_g_asistencia'] = $this->input->get('id', TRUE);
       $n['id_e_asistencia'] = $this->input->get('e', TRUE);
       $this->session->set_userdata($n);
-      $datos['title'] = 'Listado de asistencia | Fundación Tesak';
-      $this->load->view('layout/header',$datos);
+      $titulo['title'] = 'Listado de asistencia | Fundación Tesak';
+      $this->load->view('layout/header',$titulo);
       $this->load->view('colaborador/reporte_asistencia',$datos);
       $this->load->view('layout/scripting');
 
@@ -406,6 +410,141 @@ class Ceventocl extends CI_Controller
     }
 
     echo $salida;
+  }
+
+  public function imprimirLista()
+  {
+    $this->load->library('pdf');
+    $id_grupo = $this->input->get('id', TRUE);
+    $id_evento = $this->input->get('e', TRUE);
+
+    $resultados1 = $this->meventocl->imprimirListaConsulta1($id_grupo, $id_evento);
+    $resultados2 = $this->meventocl->imprimirListaConsulta2($id_grupo, $id_evento);
+
+    $this->pdf = new Pdf();
+
+    $this->pdf->AddPage();
+    $this->pdf->SetFillColor(232,232,232);
+    $this->pdf->SetFont('Arial','B',11);
+    $this->pdf->SetTitle("Imprimir | Lista de asistencia");
+
+    foreach($resultados1 as $datos)
+    {
+      $this->pdf->Cell(6);
+      $this->pdf->Cell(120,8, utf8_decode('Departamento: '.$datos->departamento_nombre));
+      $this->pdf->Cell(6);
+      $this->pdf->Cell(120,8, utf8_decode('Evento: '.$datos->evento_nombre),0,1,'');
+      $this->pdf->Cell(6);
+      $this->pdf->Cell(120,8,utf8_decode('Grupo: '.$datos->grupo_nombre),0,1,'');
+      $this->pdf->Cell(6);
+      $this->pdf->Cell(120,8,utf8_decode('Encargado de grupo: '.$datos->grupo_encargado),0,0,'');
+      $this->pdf->Cell(6);
+      $this->pdf->Cell(120,8, 'Fecha: '.date("d/m/Y",strtotime($datos->fecha)),0,1,'');
+      $this->pdf->Ln(7);
+    }
+
+
+
+    $x = 1;
+    $this->pdf->Cell(14);
+    $this->pdf->Cell(15,6,'Nro.',1,0,'C',1);
+    $this->pdf->Cell(50,6,'Apellidos',1,0,'C',1);
+    $this->pdf->Cell(50,6,'Nombres',1,0,'C',1);
+    $this->pdf->Cell(50,6,'Sexo',1,1,'C',1);
+
+    foreach ($resultados2 as $tabla)
+    {
+      /*
+     * TITULOS DE COLUMNAS
+     *
+     * $this->pdf->Cell(Ancho, Alto,texto,borde,posición,alineación,relleno);
+     */
+
+      $this->pdf->SetFont('Arial','',11);
+      $this->pdf->SetFillColor(255,255,255);
+      $this->pdf->Cell(14);
+      $this->pdf->Cell(15,6,$x++,1,0,'C',1);
+
+      $this->pdf->Cell(50,6,utf8_decode($tabla->alumno_apellido),1,0,'C',1);
+      $this->pdf->Cell(50,6,utf8_decode($tabla->alumno_nombre),1,0,'C',1);
+      $this->pdf->Cell(50,6,utf8_decode($tabla->alumno_sexo),1,0,'C',1);
+
+      $this->pdf->Ln(5);
+    }
+
+
+    $this->pdf->Output("Lista de alumnos Feexpt.pdf", 'I');
+  }
+
+  public function imprimirLista2()
+  {
+    $this->load->library('pdf');
+    $id_grupo = $this->input->get('id', TRUE);
+    $id_evento = $this->input->get('e', TRUE);
+
+    $resultados1 = $this->meventocl->imprimirListaConsulta1($id_grupo, $id_evento);
+    $resultados3 = $this->meventocl->imprimirListaConsulta3($id_evento);
+
+    $this->pdf = new Pdf();
+
+    $this->pdf->AddPage();
+    $this->pdf->SetFillColor(232,232,232);
+    $this->pdf->SetFont('Arial','B',11);
+    $this->pdf->SetTitle("Imprimir | Lista de asistencia");
+
+    foreach($resultados1 as $datos)
+    {
+      $this->pdf->Cell(6);
+      $this->pdf->Cell(120,8, utf8_decode('Departamento: '.$datos->departamento_nombre));
+      $this->pdf->Cell(6);
+      $this->pdf->Cell(120,8, utf8_decode('Evento: '.$datos->evento_nombre),0,1,'');
+      $this->pdf->Cell(6);
+      $this->pdf->Cell(120,8,utf8_decode('Grupo: '.$datos->grupo_nombre),0,1,'');
+      $this->pdf->Cell(6);
+      $this->pdf->Cell(120,8,utf8_decode('Encargado de grupo: '.$datos->grupo_encargado),0,0,'');
+      $this->pdf->Cell(6);
+      $this->pdf->Cell(120,8, 'Fecha: '.date("d/m/Y",strtotime($datos->fecha)),0,1,'');
+      $this->pdf->Ln(7);
+    }
+
+
+
+    $x = 1;
+    $this->pdf->Cell(14);
+    $this->pdf->Cell(15,6,'Nro.',1,0,'C',1);
+    $this->pdf->Cell(50,6,'Apellidos',1,0,'C',1);
+    $this->pdf->Cell(50,6,'Nombres',1,0,'C',1);
+    $this->pdf->Cell(50,6,'Asistencia',1,1,'C',1);
+
+    foreach ($resultados3 as $tabla)
+    {
+      /*
+     * TITULOS DE COLUMNAS
+     *
+     * $this->pdf->Cell(Ancho, Alto,texto,borde,posición,alineación,relleno);
+     */
+
+      $this->pdf->SetFont('Arial','',11);
+      $this->pdf->SetFillColor(255,255,255);
+      $this->pdf->Cell(14);
+      $this->pdf->Cell(15,6,$x++,1,0,'C',1);
+
+      $this->pdf->Cell(50,6,utf8_decode($tabla->alumno_apellido),1,0,'C',1);
+      $this->pdf->Cell(50,6,utf8_decode($tabla->alumno_nombre),1,0,'C',1);
+      if($tabla->asistencia == 1)
+      {
+        $this->pdf->Cell(50,6,'Presente',1,0,'C',1);
+      }
+      else if($tabla->asistencia == 0)
+      {
+        $this->pdf->Cell(50,6,'Ausente',1,0,'C',1);
+      }
+
+      $this->pdf->Ln(5);
+    }
+
+
+    $this->pdf->Output("Lista de alumnos Feexpt.pdf", 'I');
   }
 
 

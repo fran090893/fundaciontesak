@@ -21,7 +21,7 @@ class Clogin extends  CI_Controller
 
     $resultado = $this->mlogin->ingresar($usuario, $pass);
 
-    if($resultado != false) //Verifica si hay informacion en la consulta realizada en mlogin
+    if($this->session->userdata('usuario')) //Verifica si hay informacion en la consulta realizada en mlogin
     {
       $datos['title'] = 'Inicio | Fundación Tesak';
       $this->load->view('layout/header',$datos);

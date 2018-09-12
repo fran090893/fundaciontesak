@@ -57,7 +57,8 @@ class Mgrupocd extends CI_Model
 
   public function consultarGrupo()
   {
-    $c ="SELECT id_grupo, grupo_nombre FROM grupo";
+    $id_dept = $this->session->userdata('departamento');
+    $c ="SELECT id_grupo, grupo_nombre FROM grupo WHERE grupo.id_departamento = '".$id_dept."'";
     $resultados = $this->db->query($c);
     $row = $resultados->result();
     return $row;

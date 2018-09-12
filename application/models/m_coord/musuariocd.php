@@ -23,7 +23,7 @@ class Musuariocd extends CI_Model
 
   public function consultarCargos()
   {
-    $c ="SELECT id_cargo, cargo FROM cargo";
+    $c ="SELECT cargo FROM cargo WHERE id_cargo = '2' OR id_cargo = '3'";
     $resultados = $this->db->query($c);
     $row = $resultados->result();
     return $row;

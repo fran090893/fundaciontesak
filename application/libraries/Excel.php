@@ -4,7 +4,7 @@
  * Clase para la exportación de resultados a excel
  * @version 0.1 Primera version
  */
-require_once APPPATH ."/third_party/PHPExcel.php";
+require_once APPPATH ."/third_party/php_excel/PHPExcel.php";
 
 class Excel extends PHPExcel
 {

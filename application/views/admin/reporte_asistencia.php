@@ -24,7 +24,7 @@
               </table>
             </div>
             <div class="form-group" style="text-align:center;">
-              <a  href="#" class="btn btn-primary btn-md" ><i class="fas fa-print"></i>&nbsp; Imprimir lista</a>
+              <a  href="imprimirLista2?id=<?php echo $g12;?>&e=<?php echo $e12;?>" class="btn btn-primary btn-md" ><i class="fas fa-print"></i>&nbsp; Imprimir lista</a>
             </div>
           </div>
         </div>

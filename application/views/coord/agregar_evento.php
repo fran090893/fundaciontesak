@@ -35,18 +35,16 @@
               <form method="POST" action="<?php echo base_url('c_coord/ceventocd/agregarEvento');?>">
                 <div class="form-group">
                   <label for="nombre_evento">Nombre del evento:</label>
-                  <input class="form-control" id="nombre_evento" name="nombre_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del evento" required="true" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+">
+                  <input class="form-control" id="nombre_evento" name="nombre_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del evento" required="true" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ , -  _  # . / ]+">
                 </div>
                 <div class="form-group">
                   <label for="descripcion_evento">Descipción:</label>
-                  <input class="form-control" id="descripcion_evento" name="descripcion_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)" required="true" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+">
+                  <input class="form-control" id="descripcion_evento" name="descripcion_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)" required="true" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ , -  _  # . / ]+">
                 </div>
-
                 <div class="form-group">
                   <label for="fecha">Fecha de evento:</label>
                   <input class="form-control" id="fecha" name="fecha" type="date" aria-describedby="nameHelp"  required="true">
                 </div>
-
                 <div class="form-group">
                   <label for="grupo">Grupo:</label>
                   <select class="custom-select"  id="grupo" name="grupo" required>
@@ -59,7 +57,8 @@
 
                    ?>
                  </select>
-                </div>
+               </div>
+
                 <div class="form-group">
                   <input class="btn btn-success btn-block" type="submit" value="Agregar evento">
                 </div>

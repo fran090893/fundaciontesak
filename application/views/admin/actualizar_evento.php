@@ -14,11 +14,11 @@
                 ?>
                 <div class="form-group">
                   <label for="nombre_evento">Nombre del evento:</label>
-                  <input class="form-control" value="<?php echo $campo->evento_nombre; ?>" id="nombre_evento" name="nombre_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del evento" required="true" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+">
+                  <input class="form-control" value="<?php echo $campo->evento_nombre; ?>" id="nombre_evento" name="nombre_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre del evento" required="true" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ , -  _  # . / ]+">
                 </div>
                 <div class="form-group">
                   <label for="descripcion_evento">Descipción:</label>
-                  <input class="form-control"  value="<?php echo $campo->evento_descripcion; ?>" id="descripcion_evento" name="descripcion_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ ]+" >
+                  <input class="form-control"  value="<?php echo $campo->evento_descripcion; ?>" id="descripcion_evento" name="descripcion_evento" type="text" aria-describedby="nameHelp" placeholder="Digitar descripción (opcional)" pattern="[A-Z a-z 0-9 áéíóú ÁÉÍÓÚ Ññ , -  _  # . / ]+" >
                 </div>
                 <div class="form-group">
                   <label for="dept">Grupo:</label>
