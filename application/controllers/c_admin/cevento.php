@@ -192,8 +192,8 @@ class Cevento extends CI_Controller
                       <td>'.$filas->grupo.'</td>
                       <td>'.$filas->departamento.'</td>
                       <td>
-                        <button class="insertaa btn btn-success btn-md"  data-id="'.$filas->id_alumno.'" data-evento="'.$id_evento.'" title="Asistio" ><i class="fas fa-check"></i></button>
-                        <button class="insertab btn btn-danger btn-md" data-id="'.$filas->id_alumno.'"  data-evento="'.$id_evento.'" title="No asistio"><i class="fas fa-times"></i></button>
+                        <button class="insertaa btn btn-success btn-md"  data-id="'.$filas->id_alumno.'" data-evento="'.$id_evento.'" title="Asistio" onclick="CountFun();"><i class="fas fa-check"></i></button>
+                        <button class="insertab btn btn-danger btn-md" data-id="'.$filas->id_alumno.'"  data-evento="'.$id_evento.'" title="No asistio" onclick="CountFun();"><i class="fas fa-times"></i></button>
                       </td>
              </tr>';
          }
@@ -327,16 +327,29 @@ class Cevento extends CI_Controller
     {
       $id_evento = $this->input->post('id');
 
-      $bandera = $this->mevento->eventoRealizadoConsulta($id_evento);
+      $id_cont = $this->input->post('id1');
+      $n['id_cont'];
+      $this->session->set_userdata($n);
 
-      if($bandera = true)
+      if($id_cont == $this->session->userdata('asistencia_id'))
       {
-        echo 'true';
+        $bandera = $this->mevento->eventoRealizadoConsulta($id_evento);
+
+        if($bandera = true)
+        {
+          echo 'true';
+        }
+        else
+        {
+          echo 'false';
+        }
+
       }
       else
       {
         echo 'false';
       }
+
     }
 
   }
@@ -543,6 +556,8 @@ class Cevento extends CI_Controller
 
   public function imprimirLista()
   {
+    if($this->session->userdata('asistencia_id') <= $this->session->userdata('id_cont'))
+    {
     $this->load->library('pdf');
     $id_grupo = $this->input->get('id', TRUE);
     $id_evento = $this->input->get('e', TRUE);
@@ -603,6 +618,11 @@ class Cevento extends CI_Controller
 
 
     $this->pdf->Output("Lista de alumnos Feexpt.pdf", 'I');
+  }
+  else{
+    echo'<script>alert("No hay registro que imprimir.");</script>';
+    // code...
+  }
   }
 
   public function imprimirLista2()

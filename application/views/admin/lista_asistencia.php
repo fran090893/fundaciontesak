@@ -41,6 +41,11 @@
 
   <script type="text/javascript">
     var BASE_URL = "<?php echo base_url();?>";
+    var CNT = 0;
+    function CountFun()
+    {
+     CNT = parseInt(CNT) + parseInt(1);
+    }
   </script>
   <script src="<?php echo base_url('assets/style/vendor/jquery/jquery.min.js');?>"></script>
   <script src="<?php echo base_url('assets/style/vendor/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
