@@ -4,8 +4,7 @@ class Ceventocl extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_colaborador/meventocl');
-    $this->load->model('m_colaborador/mgrupocl');
+    $this->load->model('m_colaborador/Meventocl');
   }
 
 
@@ -121,7 +120,7 @@ class Ceventocl extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->meventocl->buscarAsistencia($busqueda);
+      $resultados = $this->Meventocl->buscarAsistencia($busqueda);
       $id_evento = $this->session->userdata('id_evento3');
 
 
@@ -135,8 +134,8 @@ class Ceventocl extends CI_Controller
                       <td>'.$filas->grupo.'</td>
                       <td>'.$filas->departamento.'</td>
                       <td>
-                        <button class="insertaa btn btn-success btn-md"  data-id="'.$filas->id_alumno.'" data-evento="'.$id_evento.'" title="Asistio" ><i class="fas fa-check"></i></button>
-                        <button class="insertab btn btn-danger btn-md" data-id="'.$filas->id_alumno.'"  data-evento="'.$id_evento.'" title="No asistio"><i class="fas fa-times"></i></button>
+                        <button class="insertaa btn btn-success btn-md"  data-id="'.$filas->id_alumno.'" data-evento="'.$id_evento.'" title="Asistio" onclick="CountFun();"><i class="fas fa-check"></i></button>
+                        <button class="insertab btn btn-danger btn-md" data-id="'.$filas->id_alumno.'"  data-evento="'.$id_evento.'" title="No asistio" onclick="CountFun();"><i class="fas fa-times"></i></button>
                       </td>
              </tr>';
          }
@@ -164,7 +163,7 @@ class Ceventocl extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->meventocl->buscarEventoProximo($busqueda);
+      $resultados = $this->Meventocl->buscarEventoProximo($busqueda);
 
       if($this->session->userdata('eventos_p_id') > 0)
       {
@@ -208,7 +207,7 @@ class Ceventocl extends CI_Controller
       $arreglo['evento_id1'] = $this->input->post('evento');
       $arreglo['asistencia1'] = $this->input->post('asistente');
 
-      $bandera = $this->meventocl->asistenciaConsulta($arreglo);
+      $bandera = $this->Meventocl->asistenciaConsulta($arreglo);
 
       if($bandera = true)
       {
@@ -233,16 +232,30 @@ class Ceventocl extends CI_Controller
     {
       $id_evento = $this->input->post('id');
 
-      $bandera = $this->meventocl->eventoRealizadoConsulta($id_evento);
+      $id_cont = $this->input->post('id3');
+      $n["id_cont"]= $id_cont;
+      $this->session->set_userdata($n);
 
-      if($bandera = true)
+      if($id_cont == $this->session->userdata('asistencia_id'))
       {
-        echo 'true';
+        $bandera = $this->Meventocl->eventoRealizadoConsulta($id_evento);
+
+        if($bandera = true)
+        {
+          echo "success";
+        }
+        else
+        {
+          echo "fail";
+        }
+
+
       }
       else
       {
-        echo 'false';
+        echo "fail";
       }
+
     }
 
   }
@@ -258,7 +271,7 @@ class Ceventocl extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->meventocl->buscarAsistenciaGrupal($busqueda);
+      $resultados = $this->Meventocl->buscarAsistenciaGrupal($busqueda);
 
       if($this->session->userdata('grupal_id') > 0)
       {
@@ -303,7 +316,7 @@ class Ceventocl extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->meventocl->buscarEventoRealizadoConsulta($busqueda);
+      $resultados = $this->Meventocl->buscarEventoRealizadoConsulta($busqueda);
 
       if($this->session->userdata('realizado_id') > 0)
       {
@@ -347,9 +360,9 @@ class Ceventocl extends CI_Controller
     {
       $id_evento = $this->input->get('id', TRUE);
 
-      $bandera1 = $this->meventocl->borrarAsistencia($id_evento);
+      $bandera1 = $this->Meventocl->borrarAsistencia($id_evento);
 
-      $bandera2 = $this->meventocl->updateEstadoEvento($id_evento);
+      $bandera2 = $this->Meventocl->updateEstadoEvento($id_evento);
 
       if($bandera1 = true & $bandera2 = true)
       {
@@ -376,7 +389,7 @@ class Ceventocl extends CI_Controller
     $salida="";
     $busqueda = $this->input->post('consulta');
     $id_evento = $this->session->userdata('id_e_asistencia');
-    $resultados = $this->meventocl->buscarReporteAsistencia($busqueda, $id_evento);
+    $resultados = $this->Meventocl->buscarReporteAsistencia($busqueda, $id_evento);
     $boton="";
     if($this->session->userdata('reporte_asistencia1_id') > 0)
     {
@@ -418,8 +431,8 @@ class Ceventocl extends CI_Controller
     $id_grupo = $this->input->get('id', TRUE);
     $id_evento = $this->input->get('e', TRUE);
 
-    $resultados1 = $this->meventocl->imprimirListaConsulta1($id_grupo, $id_evento);
-    $resultados2 = $this->meventocl->imprimirListaConsulta2($id_grupo, $id_evento);
+    $resultados1 = $this->Meventocl->imprimirListaConsulta1($id_grupo, $id_evento);
+    $resultados2 = $this->Meventocl->imprimirListaConsulta2($id_grupo, $id_evento);
 
     $this->pdf = new Pdf();
 
@@ -482,8 +495,8 @@ class Ceventocl extends CI_Controller
     $id_grupo = $this->input->get('id', TRUE);
     $id_evento = $this->input->get('e', TRUE);
 
-    $resultados1 = $this->meventocl->imprimirListaConsulta1($id_grupo, $id_evento);
-    $resultados3 = $this->meventocl->imprimirListaConsulta3($id_evento);
+    $resultados1 = $this->Meventocl->imprimirListaConsulta1($id_grupo, $id_evento);
+    $resultados3 = $this->Meventocl->imprimirListaConsulta3($id_evento);
 
     $this->pdf = new Pdf();
 

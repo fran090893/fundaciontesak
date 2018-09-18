@@ -5,8 +5,8 @@ class Cgrupo extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_admin/mgrupo');
-    $this->load->model('m_admin/mdept');
+    $this->load->model('m_admin/Mgrupo');
+    $this->load->model('m_admin/Mdept');
   }
 
   public function v_agregarGrupo()//Vista agregar grupo
@@ -18,7 +18,7 @@ class Cgrupo extends CI_Controller
     }
     else
     {
-      $datos['depts'] = $this->mdept->consultarDept();
+      $datos['depts'] = $this->Mdept->consultarDept();
       $datos['error'] = '';
       $datos['title'] = 'Agregar grupo | Fundación Tesak';
       $this->load->view('layout/header', $datos);
@@ -39,8 +39,8 @@ class Cgrupo extends CI_Controller
       $id_grupo = $this->input->get('id',TRUE);
       $g['id'] = $id_grupo;
       $this->session->set_userdata($g);
-      $datos['actualizar'] = $this->mgrupo->idGrupo($id_grupo);
-      $datos['depts'] = $this->mdept->consultarDept();
+      $datos['actualizar'] = $this->Mgrupo->idGrupo($id_grupo);
+      $datos['depts'] = $this->Mdept->consultarDept();
       $titulo['title'] = 'Actualizar grupo | Fundación Tesak';
       $this->load->view('layout/header', $titulo);
       $this->load->view('admin/actualizar_grupo',$datos);
@@ -84,7 +84,7 @@ class Cgrupo extends CI_Controller
       $arreglo['celular_grupo'] = $this->input->post('celular_grupo');
       $arreglo['dept'] = $this->input->post('dept');
 
-      $bandera = $this->mgrupo->actualizarGrupo($arreglo);
+      $bandera = $this->Mgrupo->actualizarGrupo($arreglo);
 
       if($bandera = true)
       {
@@ -124,7 +124,7 @@ class Cgrupo extends CI_Controller
       $arreglo['celular_grupo'] = $this->input->post('celular_grupo');
       $arreglo['dept'] = $this->input->post('dept');
 
-      $bandera = $this->mgrupo->agregarGrupo($arreglo);
+      $bandera = $this->Mgrupo->agregarGrupo($arreglo);
 
       if($bandera = true)
       {
@@ -155,7 +155,7 @@ class Cgrupo extends CI_Controller
     else
     {
       $id_grupo = $this->input->get('id', TRUE);
-      $bandera = $this->mgrupo->eliminarGrupom($id_grupo);
+      $bandera = $this->Mgrupo->eliminarGrupom($id_grupo);
 
       if($bandera = true)
       {
@@ -188,7 +188,7 @@ class Cgrupo extends CI_Controller
    {
      $salida="";
      $busqueda = $this->input->post('consulta');
-     $resultados = $this->mgrupo->buscarGrupo($busqueda);
+     $resultados = $this->Mgrupo->buscarGrupo($busqueda);
      $lk = base_url('c_admin/calumno/v_lista_alumnos?id=');
      $lk1 = base_url('c_admin/calumno/v_agregarAlumno?id=');
      $lk2 = base_url('c_admin/calumno/v_agregarTabla?id=');

@@ -4,8 +4,8 @@ class Cusuario extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_admin/musuario');
-    $this->load->model('m_admin/mdept');
+    $this->load->model('m_admin/Musuario');
+    $this->load->model('m_admin/Mdept');
   }
 
   public function v_agregarUser()//Vista agregar usuario
@@ -17,8 +17,8 @@ class Cusuario extends CI_Controller
     }
     else
     {
-      $datos['depts'] = $this->mdept->consultarDept();
-      $datos['cargos'] = $this->musuario->consultarCargos();
+      $datos['depts'] = $this->Mdept->consultarDept();
+      $datos['cargos'] = $this->Musuario->consultarCargos();
       $datos['error'] = '';
       $datos['title'] = 'Agregar usuario | Fundación Tesak';
       $this->load->view('layout/header', $datos);
@@ -39,9 +39,9 @@ class Cusuario extends CI_Controller
       $id_usuario = $this->input->get('id',TRUE);
       $g['id_usuario1'] = $id_usuario;
       $this->session->set_userdata($g);
-      $datos['actualizar1'] = $this->musuario->consultarUsuario($id_usuario);
-      $datos['depts'] = $this->mdept->consultarDept();
-      $datos['cargos'] = $this->musuario->consultarCargos();
+      $datos['actualizar1'] = $this->Musuario->consultarUsuario($id_usuario);
+      $datos['depts'] = $this->Mdept->consultarDept();
+      $datos['cargos'] = $this->Musuario->consultarCargos();
       $datos['error'] = '';
       $titulo['title'] = 'Actualizar usuario | Fundación Tesak';
       $this->load->view('layout/header', $titulo);
@@ -86,12 +86,12 @@ class Cusuario extends CI_Controller
       $arreglo['dept'] = $this->input->post('dept');
       $arreglo['cargo'] = $this->input->post('cargo');
 
-      $bandera = $this->musuario->agregarUsuario($arreglo);
+      $bandera = $this->Musuario->agregarUsuario($arreglo);
 
       if($bandera = true)
       {
-        $datos['depts'] = $this->mdept->consultarDept();
-        $datos['cargos'] = $this->musuario->consultarCargos();
+        $datos['depts'] = $this->Mdept->consultarDept();
+        $datos['cargos'] = $this->Musuario->consultarCargos();
         $datos['error'] = 'n';
         $datos['title'] = 'Agregar usuario | Fundación Tesak';
         $this->load->view('layout/header', $datos);
@@ -100,8 +100,8 @@ class Cusuario extends CI_Controller
       }
       else
       {
-        $datos['depts'] = $this->mdept->consultarDept();
-        $datos['cargos'] = $this->musuario->consultarCargos();
+        $datos['depts'] = $this->Mdept->consultarDept();
+        $datos['cargos'] = $this->Musuario->consultarCargos();
         $datos['error'] = 's';
         $datos['title'] = 'Agregar usuario | Fundación Tesak';
         $this->load->view('layout/header', $datos);
@@ -122,7 +122,7 @@ class Cusuario extends CI_Controller
     {
       $id_usuario = $this->input->get('id', TRUE);
 
-      $bandera = $this->musuario->eliminarUsuario($id_usuario);
+      $bandera = $this->Musuario->eliminarUsuario($id_usuario);
 
       if($bandera = true)
       {
@@ -164,7 +164,7 @@ class Cusuario extends CI_Controller
       $arreglo['dept1'] = $this->input->post('dept');
       $arreglo['cargo1'] = $this->input->post('cargo');
 
-      $bandera = $this->musuario->actualizarUsuario($arreglo);
+      $bandera = $this->Musuario->actualizarUsuario($arreglo);
 
       if($bandera = true)
       {
@@ -196,7 +196,7 @@ class Cusuario extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->musuario->buscarUsuario($busqueda);
+      $resultados = $this->Musuario->buscarUsuario($busqueda);
 
       if($this->session->userdata('usu') > 0)
       {

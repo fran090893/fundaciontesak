@@ -4,8 +4,8 @@ class Cestadisticacd extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_coord/mestadisticacd');
-    $this->load->model('m_admin/mdept');
+    $this->load->model('m_coord/Mestadisticacd');
+    $this->load->model('m_admin/Mdept');
   }
 
   public function v_EstadisticaGrupal()
@@ -18,7 +18,7 @@ class Cestadisticacd extends CI_Controller
     else
     {
       $id_grupo = $this->input->get('id', TRUE);
-      $datos['stats_r'] = $this->mestadisticacd->grupalAsistenciaReal($id_grupo);
+      $datos['stats_r'] = $this->Mestadisticacd->grupalAsistenciaReal($id_grupo);
       $titulo['title'] = "Estadística Grupal | Fundación Tesak";
       $this->load->view('layout/header', $titulo);
       $this->load->view('coord/estadistica_grupal',$datos);
@@ -54,7 +54,7 @@ class Cestadisticacd extends CI_Controller
     else
     {
       $id_dept = $this->session->userdata('departamento');
-      $datos['lista_dept1'] = $this->mdept->consultarDeptID($id_dept);
+      $datos['lista_dept1'] = $this->Mdept->consultarDeptID($id_dept);
       $titulo['title'] = 'Estadística por departamento | Fundación Tesak';
       $this->load->view('layout/header', $titulo);
       $this->load->view('coord/v_dept_stats',$datos);
@@ -72,7 +72,7 @@ class Cestadisticacd extends CI_Controller
     else
     {
       $id_dept = $this->input->get('id', TRUE);
-      $datos['stats_r'] = $this->mestadisticacd->deptAsistenciaReal($id_dept);
+      $datos['stats_r'] = $this->Mestadisticacd->deptAsistenciaReal($id_dept);
       $titulo['title'] = "Estadística por departamento | Fundación Tesak";
       $this->load->view('layout/header', $titulo);
       $this->load->view('coord/estadistica_dept',$datos);
@@ -92,7 +92,7 @@ class Cestadisticacd extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->mestadisticacd->buscarEstadisticaGrupal($busqueda);
+      $resultados = $this->Mestadisticacd->buscarEstadisticaGrupal($busqueda);
 
       if($this->session->userdata('estadistica_id') > 0)
       {

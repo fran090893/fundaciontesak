@@ -4,8 +4,8 @@ class Cestadistica extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_admin/mestadistica');
-    $this->load->model('m_admin/mdept');
+    $this->load->model('m_admin/Mestadistica');
+    $this->load->model('m_admin/Mdept');
   }
 
 
@@ -19,8 +19,8 @@ class Cestadistica extends CI_Controller
     }
     else
     {
-      $datos['stats_r'] = $this->mestadistica->anualAsistenciaReal();
-      $datos['stats_e'] = $this->mestadistica->anualAsistenciaEsperada();
+      $datos['stats_r'] = $this->Mestadistica->anualAsistenciaReal();
+      $datos['stats_e'] = $this->Mestadistica->anualAsistenciaEsperada();
       $titulo['title'] = "Estadística Anual | Fundación Tesak";
       $this->load->view('layout/header', $titulo);
       $this->load->view('admin/estadistica_anual',$datos);
@@ -38,7 +38,7 @@ class Cestadistica extends CI_Controller
     else
     {
       $id_grupo = $this->input->get('id', TRUE);
-      $datos['stats_r'] = $this->mestadistica->grupalAsistenciaReal($id_grupo);
+      $datos['stats_r'] = $this->Mestadistica->grupalAsistenciaReal($id_grupo);
       $titulo['title'] = "Estadística Grupal | Fundación Tesak";
       $this->load->view('layout/header', $titulo);
       $this->load->view('admin/estadistica_grupal',$datos);
@@ -73,7 +73,7 @@ class Cestadistica extends CI_Controller
     }
     else
     {
-      $datos['lista_dept1'] = $this->mdept->consultarDept();
+      $datos['lista_dept1'] = $this->Mdept->consultarDept();
       $titulo['title'] = 'Estadística por departamento | Fundación Tesak';
       $this->load->view('layout/header', $titulo);
       $this->load->view('admin/v_dept_stats',$datos);
@@ -91,7 +91,7 @@ class Cestadistica extends CI_Controller
     else
     {
       $id_dept = $this->input->get('id', TRUE);
-      $datos['stats_r'] = $this->mestadistica->deptAsistenciaReal($id_dept);
+      $datos['stats_r'] = $this->Mestadistica->deptAsistenciaReal($id_dept);
       $titulo['title'] = "Estadística por departamento | Fundación Tesak";
       $this->load->view('layout/header', $titulo);
       $this->load->view('admin/estadistica_dept',$datos);
@@ -111,7 +111,7 @@ class Cestadistica extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->mestadistica->buscarEstadisticaGrupal($busqueda);
+      $resultados = $this->Mestadistica->buscarEstadisticaGrupal($busqueda);
 
       if($this->session->userdata('estadistica_id') > 0)
       {

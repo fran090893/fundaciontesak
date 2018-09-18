@@ -32,16 +32,15 @@ $(document).ready(function(){
   method: 'POST',
 	data: { id: idvalue, id1: idcont},
 	success: function(data){
-    if(data)
+    if(data == "success")
     {
-	   alert('Asistencia completada');
-   }else {
-     alert('111 completada');
-   }
-	},
-  error: function(data){
-    alert('Debe completar el listado de asistencia para continuar.');
-  }
+	   alert('Asistencia completada.');
+    }
+    else
+    {
+     alert('Debe completar el listado de asistencia para continuar.');
+    }
+	}
 });
 });
 

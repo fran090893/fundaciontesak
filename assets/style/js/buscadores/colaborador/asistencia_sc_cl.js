@@ -24,24 +24,23 @@ $(document).ready(function(){
 
 
 
-  $(".evento_realizado").on("click", function(){
+  $(document).on("click",".evento_realizado", function(){
    var idvalue = $(this).attr("data-id");
-
+   var idcont = CNT;
 	$.ajax({
 	url: BASE_URL+'c_colaborador/ceventocl/eventoRealizado',
   method: 'POST',
-	data: { id: idvalue},
-	success: function(result){
+	data: { id: idvalue, id3: idcont},
+	success: function(data){
 	//result es lo que envias desde tu metodo en el controlador yo le enviaria un tru o false
-		if(result)
-		{
-		 alert('Asistencia completada');
-     //header 'eventos_realizados.php';
-		}
-		else
-		{
-		 alert('No se inserto nada');
-		}
+  if(data == "success")
+  {
+   alert('Asistencia completada.');
+  }
+  else
+  {
+   alert('Debe completar el listado de asistencia para continuar.');
+  }
 	}
 });
 });

@@ -5,7 +5,7 @@ class Cgrupocd extends  CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_coord/mgrupocd');
+    $this->load->model('m_coord/Mgrupocd');
   }
 
   public function v_agregarGrupo()//Vista agregar grupo
@@ -37,7 +37,7 @@ class Cgrupocd extends  CI_Controller
       $id_grupo = $this->input->get('id',TRUE);
       $g['id'] = $id_grupo;
       $this->session->set_userdata($g);
-      $datos['actualizar'] = $this->mgrupocd->idGrupo($id_grupo);
+      $datos['actualizar'] = $this->Mgrupocd->idGrupo($id_grupo);
       $titulo['title'] = 'Actualizar grupo | Fundación Tesak';
       $this->load->view('layout/header', $titulo);
       $this->load->view('coord/actualizar_grupo',$datos);
@@ -81,7 +81,7 @@ class Cgrupocd extends  CI_Controller
       $arreglo['celular_grupo'] = $this->input->post('celular_grupo');
       $arreglo['dept'] = $this->session->userdata('departamento');
 
-      $bandera = $this->mgrupocd->actualizarGrupo($arreglo);
+      $bandera = $this->Mgrupocd->actualizarGrupo($arreglo);
 
       if($bandera = true)
       {
@@ -121,7 +121,7 @@ class Cgrupocd extends  CI_Controller
       $arreglo['celular_grupo'] = $this->input->post('celular_grupo');
       $arreglo['dept'] = $this->session->userdata('departamento');
 
-      $bandera = $this->mgrupocd->agregarGrupo($arreglo);
+      $bandera = $this->Mgrupocd->agregarGrupo($arreglo);
 
       if($bandera = true)
       {
@@ -152,7 +152,7 @@ class Cgrupocd extends  CI_Controller
     else
     {
       $id_grupo = $this->input->get('id', TRUE);
-      $bandera = $this->mgrupocd->eliminarGrupom($id_grupo);
+      $bandera = $this->Mgrupocd->eliminarGrupom($id_grupo);
 
       if($bandera = true)
       {
@@ -185,7 +185,7 @@ class Cgrupocd extends  CI_Controller
    {
      $salida="";
      $busqueda = $this->input->post('consulta');
-     $resultados = $this->mgrupocd->buscarGrupo($busqueda);
+     $resultados = $this->Mgrupocd->buscarGrupo($busqueda);
      $lk = base_url('c_coord/calumnocd/v_lista_alumnos?id=');
      $lk1 = base_url('c_coord/calumnocd/v_agregarAlumno?id=');
      $lk2 = base_url('c_coord/calumnocd/v_agregarTabla?id=');

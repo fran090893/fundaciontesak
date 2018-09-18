@@ -5,7 +5,7 @@ class Clogin extends  CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('mlogin');
+    $this->load->model('Mlogin');
   }
 
   public function index()
@@ -19,9 +19,9 @@ class Clogin extends  CI_Controller
     $usuario = $this->input->post('usuario');
     $pass = $this->input->post('pass');
 
-    $resultado = $this->mlogin->ingresar($usuario, $pass);
+    $resultado = $this->Mlogin->ingresar($usuario, $pass);
 
-    if($this->session->userdata('usuario')) //Verifica si hay informacion en la consulta realizada en mlogin
+    if($this->session->userdata('usuario')) //Verifica si hay informacion en la consulta realizada en Mlogin
     {
       $datos['title'] = 'Inicio | Fundación Tesak';
       $this->load->view('layout/header',$datos);
@@ -59,7 +59,7 @@ class Clogin extends  CI_Controller
 
     $clave = $this->input->post('contra_nueva');
 
-    $bandera = $this->mlogin->cambiarClaveConsulta($clave, $id_usuario);
+    $bandera = $this->Mlogin->cambiarClaveConsulta($clave, $id_usuario);
 
     if($bandera = true)
     {

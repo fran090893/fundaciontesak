@@ -4,7 +4,7 @@ class Cusuariocd extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_coord/musuariocd');
+    $this->load->model('m_coord/Musuariocd');
   }
 
   public function v_agregarUser()//Vista agregar usuario
@@ -16,7 +16,7 @@ class Cusuariocd extends CI_Controller
     }
     else
     {
-      $datos['cargos'] = $this->musuariocd->consultarCargos();
+      $datos['cargos'] = $this->Musuariocd->consultarCargos();
       $datos['error'] = '';
       $datos['title'] = 'Agregar usuario | Fundación Tesak';
       $this->load->view('layout/header', $datos);
@@ -37,8 +37,8 @@ class Cusuariocd extends CI_Controller
       $id_usuario = $this->input->get('id',TRUE);
       $g['id_usuario1'] = $id_usuario;
       $this->session->set_userdata($g);
-      $datos['actualizar1'] = $this->musuariocd->consultarUsuario($id_usuario);
-      $datos['cargos'] = $this->musuariocd->consultarCargos();
+      $datos['actualizar1'] = $this->Musuariocd->consultarUsuario($id_usuario);
+      $datos['cargos'] = $this->Musuariocd->consultarCargos();
       $datos['error'] = '';
       $titulo['title'] = 'Actualizar usuario | Fundación Tesak';
       $this->load->view('layout/header', $titulo);
@@ -83,11 +83,11 @@ class Cusuariocd extends CI_Controller
       $arreglo['dept'] = $this->session->userdata('departamento');
       $arreglo['cargo'] = $this->input->post('cargo');
 
-      $bandera = $this->musuariocd->agregarUsuario($arreglo);
+      $bandera = $this->Musuariocd->agregarUsuario($arreglo);
 
       if($bandera = true)
       {
-        $datos['cargos'] = $this->musuariocd->consultarCargos();
+        $datos['cargos'] = $this->Musuariocd->consultarCargos();
         $datos['error'] = 'n';
         $datos['title'] = 'Agregar usuario | Fundación Tesak';
         $this->load->view('layout/header', $datos);
@@ -96,7 +96,7 @@ class Cusuariocd extends CI_Controller
       }
       else
       {
-        $datos['cargos'] = $this->musuariocd->consultarCargos();
+        $datos['cargos'] = $this->Musuariocd->consultarCargos();
         $datos['error'] = 's';
         $datos['title'] = 'Agregar usuario | Fundación Tesak';
         $this->load->view('layout/header', $datos);
@@ -117,7 +117,7 @@ class Cusuariocd extends CI_Controller
     {
       $id_usuario = $this->input->get('id', TRUE);
 
-      $bandera = $this->musuariocd->eliminarUsuario($id_usuario);
+      $bandera = $this->Musuariocd->eliminarUsuario($id_usuario);
 
       if($bandera = true)
       {
@@ -159,7 +159,7 @@ class Cusuariocd extends CI_Controller
       $arreglo['dept1'] = $this->session->userdata('departamento');
       $arreglo['cargo1'] = $this->input->post('cargo');
 
-      $bandera = $this->musuariocd->actualizarUsuario($arreglo);
+      $bandera = $this->Musuariocd->actualizarUsuario($arreglo);
 
       if($bandera = true)
       {
@@ -191,7 +191,7 @@ class Cusuariocd extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->musuariocd->buscarUsuario($busqueda);
+      $resultados = $this->Musuariocd->buscarUsuario($busqueda);
 
       if($this->session->userdata('usu') > 0)
       {

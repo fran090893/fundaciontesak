@@ -4,8 +4,8 @@ class Calumnocd extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_coord/malumnocd');
-    $this->load->model('m_coord/mgrupocd');
+    $this->load->model('m_coord/Malumnocd');
+    $this->load->model('m_coord/Mgrupocd');
   }
 
   public function v_lista_alumnos()
@@ -21,7 +21,7 @@ class Calumnocd extends CI_Controller
       $n['id_g'] = $id_grupo;
       $this->session->set_userdata($n);
       $datos['error'] = '';
-      $datos['group'] = $this->mgrupocd->idGrupo($id_grupo);
+      $datos['group'] = $this->Mgrupocd->idGrupo($id_grupo);
       $titulo['title'] = 'Lista de alumnos | Fundación Tesak';
       $this->load->view('layout/header',$titulo);
       $this->load->view('coord/lista_alumnos',$datos);
@@ -42,7 +42,7 @@ class Calumnocd extends CI_Controller
       $n['id_g1'] = $id_grupo;
       $this->session->set_userdata($n);
       $datos['error'] = '';
-      $datos['group'] = $this->mgrupocd->idGrupo($id_grupo);
+      $datos['group'] = $this->Mgrupocd->idGrupo($id_grupo);
       $titulo['title'] = 'Lista de alumnos | Fundación Tesak';
       $this->load->view('layout/header',$titulo);
       $this->load->view('coord/agregar_alumno',$datos);
@@ -62,7 +62,7 @@ class Calumnocd extends CI_Controller
       $id_alumno = $this->input->get('id',TRUE);
       $g['id_alumno'] = $id_alumno;
       $this->session->set_userdata($g);
-      $datos['actualizar'] = $this->malumnocd->consultarAlumnoID($id_alumno);
+      $datos['actualizar'] = $this->Malumnocd->consultarAlumnoID($id_alumno);
       $titulo['title'] = 'Actualizar alumno | Fundación Tesak';
       $this->load->view('layout/header', $titulo);
       $this->load->view('coord/actualizar_alumno',$datos);
@@ -81,7 +81,7 @@ class Calumnocd extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->malumnocd->buscarAlumno($busqueda);
+      $resultados = $this->Malumnocd->buscarAlumno($busqueda);
 
       if($this->session->userdata('na') > 0)
       {
@@ -127,7 +127,7 @@ class Calumnocd extends CI_Controller
       $arreglo['fecha'] = $this->input->post('fecha');
       $arreglo['instituto'] = $this->input->post('instituto');
 
-      $bandera = $this->malumnocd->agregarAlumno($arreglo);
+      $bandera = $this->Malumnocd->agregarAlumno($arreglo);
 
       if($bandera = true)
       {
@@ -163,7 +163,7 @@ class Calumnocd extends CI_Controller
       $arreglo['fecha'] = $this->input->post('fecha');
       $arreglo['instituto'] = $this->input->post('instituto');
 
-      $bandera = $this->malumnocd->actualizarAlumno($arreglo);
+      $bandera = $this->Malumnocd->actualizarAlumno($arreglo);
 
       if($bandera = true)
       {
@@ -186,7 +186,7 @@ class Calumnocd extends CI_Controller
     else
     {
       $id_alumno = $this->input->get('id', TRUE);
-      $bandera = $this->malumnocd->eliminarAlumno($id_alumno);
+      $bandera = $this->Malumnocd->eliminarAlumno($id_alumno);
 
       if($bandera = true)
       {
@@ -269,7 +269,7 @@ class Calumnocd extends CI_Controller
         	$arreglo['sexo'] = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
         	$arreglo['instituto'] = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
 
-          $bandera = $this->malumnocd->agregarTablaConsulta($arreglo, $id_grupo);
+          $bandera = $this->Malumnocd->agregarTablaConsulta($arreglo, $id_grupo);
 
           if ($bandera = true)
           {

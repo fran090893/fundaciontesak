@@ -5,8 +5,7 @@ class Cgrupocl extends  CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_colaborador/mgrupocl');
-    $this->load->model('m_admin/mdept');
+    $this->load->model('m_colaborador/Mgrupocl');
   }
 
   public function v_buscarGrupo()//Vista buscar grupo
@@ -38,7 +37,7 @@ class Cgrupocl extends  CI_Controller
    {
      $salida="";
      $busqueda = $this->input->post('consulta');
-     $resultados = $this->mgrupocl->buscarGrupo($busqueda);
+     $resultados = $this->Mgrupocl->buscarGrupo($busqueda);
      $lk = base_url('c_colaborador/calumnocl/v_lista_alumnos?id=');
      $lk1 = base_url('c_colaborador/calumnocl/v_agregarAlumno?id=');
      $lk2 = base_url('c_colaborador/calumnocl/v_agregarTabla?id=');

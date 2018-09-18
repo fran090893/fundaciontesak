@@ -4,7 +4,7 @@ class Cdept extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_admin/mdept');
+    $this->load->model('m_admin/Mdept');
   }
 
   public function v_agregarDept()
@@ -36,7 +36,7 @@ class Cdept extends CI_Controller
       $id_dept = $this->input->get('id',TRUE);
       $g['id_dept1'] = $id_dept;
       $this->session->set_userdata($g);
-      $datos['actualizar_dept'] = $this->mdept->filaDept($id_dept);
+      $datos['actualizar_dept'] = $this->Mdept->filaDept($id_dept);
       $datos['error'] = '';
       $titulo['title'] = 'Actualizar departamento | Fundación Tesak';
       $this->load->view('layout/header', $titulo);
@@ -54,7 +54,7 @@ class Cdept extends CI_Controller
     }
     else
     {
-      $datos['lista_dept1'] = $this->mdept->consultarDept();
+      $datos['lista_dept1'] = $this->Mdept->consultarDept();
       $datos['error'] = '';
       $datos['title'] = 'Departamentos disponibles | Fundación Tesak';
       $this->load->view('layout/header', $datos);
@@ -75,7 +75,7 @@ class Cdept extends CI_Controller
           $arreglo['nombre_dept'] = $this->input->post('nombre_dept');
           $arreglo['descripcion_dept'] = $this->input->post('descripcion_dept');
 
-          $bandera = $this->mdept->agregarDept($arreglo);
+          $bandera = $this->Mdept->agregarDept($arreglo);
 
           if($bandera = true)
           {
@@ -108,11 +108,11 @@ class Cdept extends CI_Controller
         $arreglo['nombre_dept'] = $this->input->post('nombre_dept');
         $arreglo['descripcion_dept'] = $this->input->post('descripcion_dept');
 
-        $bandera = $this->mdept->actualizarDept($arreglo);
+        $bandera = $this->Mdept->actualizarDept($arreglo);
 
         if($bandera = true)
         {
-          $datos['lista_dept1'] = $this->mdept->consultarDept();
+          $datos['lista_dept1'] = $this->Mdept->consultarDept();
           $datos['error'] = 'n';
           $datos['title'] = 'Departamentos disponibles | Fundación Tesak';
           $this->load->view('layout/header', $datos);
@@ -121,7 +121,7 @@ class Cdept extends CI_Controller
         }
         else
         {
-          $datos['lista_dept1'] = $this->mdept->consultarDept();
+          $datos['lista_dept1'] = $this->Mdept->consultarDept();
           $datos['error'] = 's';
           $datos['title'] = 'Departamentos disponibles | Fundación Tesak';
           $this->load->view('layout/header', $datos);

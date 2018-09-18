@@ -4,8 +4,8 @@ class Ceventocd extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_coord/meventocd');
-    $this->load->model('m_coord/mgrupocd');
+    $this->load->model('m_coord/Meventocd');
+    $this->load->model('m_coord/Mgrupocd');
   }
 
   public function v_agregarEvento()
@@ -17,7 +17,7 @@ class Ceventocd extends CI_Controller
     }
     else
     {
-      $datos['grupos'] = $this->mgrupocd->consultarGrupo();
+      $datos['grupos'] = $this->Mgrupocd->consultarGrupo();
       $datos['error'] = '';
       $datos['title'] = 'Agregar evento | Fundación Tesak';
       $this->load->view('layout/header', $datos);
@@ -97,8 +97,8 @@ class Ceventocd extends CI_Controller
     else
     {
       $id_grupo = $this->input->get('id', TRUE);
-      $datos['resultados1'] = $this->meventocd->reporteGeneralConsulta1($id_grupo);
-      $datos['resultados2'] = $this->meventocd->reporteGeneralConsulta2($id_grupo);
+      $datos['resultados1'] = $this->Meventocd->reporteGeneralConsulta1($id_grupo);
+      $datos['resultados2'] = $this->Meventocd->reporteGeneralConsulta2($id_grupo);
       $titulo['title'] = 'Reporte general | Fundación Tesak';
       $this->load->view('layout/header',$titulo);
       $this->load->view('coord/reporte_general',$datos);
@@ -136,8 +136,8 @@ class Ceventocd extends CI_Controller
       $g['e_realizado_id'] = $id_evento;
       $g['e_realizado_id_cd'] = $id_grupo;
       $this->session->set_userdata($g);
-      $datos['actualizar'] = $this->meventocd->consultarEventoRealizado($id_evento);
-      $datos['g_consulta1'] = $this->mgrupocd->consultarGrupo();
+      $datos['actualizar'] = $this->Meventocd->consultarEventoRealizado($id_evento);
+      $datos['g_consulta1'] = $this->Mgrupocd->consultarGrupo();
       $titulo['title'] = 'Actualizar evento realizado | Fundación Tesak';
       $this->load->view('layout/header', $titulo);
       $this->load->view('coord/actualizar_evento',$datos);
@@ -180,7 +180,7 @@ class Ceventocd extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->meventocd->buscarAsistencia($busqueda);
+      $resultados = $this->Meventocd->buscarAsistencia($busqueda);
       $id_evento = $this->session->userdata('id_evento3');
 
 
@@ -194,8 +194,8 @@ class Ceventocd extends CI_Controller
                       <td>'.$filas->grupo.'</td>
                       <td>'.$filas->departamento.'</td>
                       <td>
-                        <button class="insertaa btn btn-success btn-md"  data-id="'.$filas->id_alumno.'" data-evento="'.$id_evento.'" title="Asistio" ><i class="fas fa-check"></i></button>
-                        <button class="insertab btn btn-danger btn-md" data-id="'.$filas->id_alumno.'"  data-evento="'.$id_evento.'" title="No asistio"><i class="fas fa-times"></i></button>
+                        <button class="insertaa btn btn-success btn-md"  data-id="'.$filas->id_alumno.'" data-evento="'.$id_evento.'" title="Asistio" onclick="CountFun();"><i class="fas fa-check"></i></button>
+                        <button class="insertab btn btn-danger btn-md" data-id="'.$filas->id_alumno.'"  data-evento="'.$id_evento.'" title="No asistio" onclick="CountFun();"><i class="fas fa-times"></i></button>
                       </td>
              </tr>';
          }
@@ -223,7 +223,7 @@ class Ceventocd extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->meventocd->buscarEventoProximo($busqueda);
+      $resultados = $this->Meventocd->buscarEventoProximo($busqueda);
 
       if($this->session->userdata('eventos_p_id') > 0)
       {
@@ -268,11 +268,11 @@ class Ceventocd extends CI_Controller
         $arreglo['grupo'] = $this->input->post('grupo');
         $arreglo['estado'] = '0';
 
-        $bandera = $this->meventocd->agregarEvento($arreglo);
+        $bandera = $this->Meventocd->agregarEvento($arreglo);
 
         if($bandera = true)
         {
-          $datos['grupos'] = $this->mgrupocd->consultarGrupo();
+          $datos['grupos'] = $this->Mgrupocd->consultarGrupo();
           $datos['error'] = 'n';
           $datos['title'] = 'Agregar evento | Fundación Tesak';
           $this->load->view('layout/header', $datos);
@@ -281,7 +281,7 @@ class Ceventocd extends CI_Controller
         }
         else
         {
-          $datos['grupos'] = $this->mgrupocd->consultarGrupo();
+          $datos['grupos'] = $this->Mgrupocd->consultarGrupo();
           $datos['error'] = 's';
           $datos['title'] = 'Agregar evento | Fundación Tesak';
           $this->load->view('layout/header', $datos);
@@ -304,7 +304,7 @@ class Ceventocd extends CI_Controller
       $arreglo['evento_id1'] = $this->input->post('evento');
       $arreglo['asistencia1'] = $this->input->post('asistente');
 
-      $bandera = $this->meventocd->asistenciaConsulta($arreglo);
+      $bandera = $this->Meventocd->asistenciaConsulta($arreglo);
 
       if($bandera = true)
       {
@@ -329,16 +329,30 @@ class Ceventocd extends CI_Controller
     {
       $id_evento = $this->input->post('id');
 
-      $bandera = $this->meventocd->eventoRealizadoConsulta($id_evento);
+      $id_cont = $this->input->post('id2');
+      $n["id_cont"]= $id_cont;
+      $this->session->set_userdata($n);
 
-      if($bandera = true)
+      if($id_cont == $this->session->userdata('asistencia_id'))
       {
-        echo 'true';
+        $bandera = $this->Meventocd->eventoRealizadoConsulta($id_evento);
+
+        if($bandera = true)
+        {
+          echo "success";
+        }
+        else
+        {
+          echo "fail";
+        }
+
+
       }
       else
       {
-        echo 'false';
+        echo "fail";
       }
+
     }
 
   }
@@ -354,7 +368,7 @@ class Ceventocd extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->meventocd->buscarAsistenciaGrupal($busqueda);
+      $resultados = $this->Meventocd->buscarAsistenciaGrupal($busqueda);
 
       if($this->session->userdata('grupal_id') > 0)
       {
@@ -399,7 +413,7 @@ class Ceventocd extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->meventocd->buscarEventoRealizadoConsulta($busqueda);
+      $resultados = $this->Meventocd->buscarEventoRealizadoConsulta($busqueda);
 
       if($this->session->userdata('realizado_id') > 0)
       {
@@ -444,9 +458,9 @@ class Ceventocd extends CI_Controller
     {
       $id_evento = $this->input->get('id', TRUE);
 
-      $bandera1 = $this->meventocd->borrarAsistencia($id_evento);
+      $bandera1 = $this->Meventocd->borrarAsistencia($id_evento);
 
-      $bandera2 = $this->meventocd->updateEstadoEvento($id_evento);
+      $bandera2 = $this->Meventocd->updateEstadoEvento($id_evento);
 
       if($bandera1 = true & $bandera2 = true)
       {
@@ -481,7 +495,7 @@ class Ceventocd extends CI_Controller
       $arreglo['descripcion_evento'] = $this->input->post('descripcion_evento');
       $arreglo['grupo'] = $this->session->userdata('e_realizado_id_cd');
 
-      $bandera = $this->meventocd->actualizarEventoRealizado($arreglo);
+      $bandera = $this->Meventocd->actualizarEventoRealizado($arreglo);
 
       if($bandera = true)
       {
@@ -507,7 +521,7 @@ class Ceventocd extends CI_Controller
     $salida="";
     $busqueda = $this->input->post('consulta');
     $id_evento = $this->session->userdata('id_e_asistencia');
-    $resultados = $this->meventocd->buscarReporteAsistencia($busqueda, $id_evento);
+    $resultados = $this->Meventocd->buscarReporteAsistencia($busqueda, $id_evento);
     $boton="";
     if($this->session->userdata('reporte_asistencia1_id') > 0)
     {
@@ -549,8 +563,8 @@ class Ceventocd extends CI_Controller
     $id_grupo = $this->input->get('id', TRUE);
     $id_evento = $this->input->get('e', TRUE);
 
-    $resultados1 = $this->meventocd->imprimirListaConsulta1($id_grupo, $id_evento);
-    $resultados2 = $this->meventocd->imprimirListaConsulta2($id_grupo, $id_evento);
+    $resultados1 = $this->Meventocd->imprimirListaConsulta1($id_grupo, $id_evento);
+    $resultados2 = $this->Meventocd->imprimirListaConsulta2($id_grupo, $id_evento);
 
     $this->pdf = new Pdf();
 
@@ -613,8 +627,8 @@ class Ceventocd extends CI_Controller
     $id_grupo = $this->input->get('id', TRUE);
     $id_evento = $this->input->get('e', TRUE);
 
-    $resultados1 = $this->meventocd->imprimirListaConsulta1($id_grupo, $id_evento);
-    $resultados3 = $this->meventocd->imprimirListaConsulta3($id_evento);
+    $resultados1 = $this->Meventocd->imprimirListaConsulta1($id_grupo, $id_evento);
+    $resultados3 = $this->Meventocd->imprimirListaConsulta3($id_evento);
 
     $this->pdf = new Pdf();
 
