@@ -53,20 +53,13 @@
                   <input class="form-control" id="telefono" name="telefono" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre de usuario" required="true">
                 </div>
 
-                <div class="form-group">
-                  <label for="nombre_us">Nombre de usuario:</label>
-                  <input class="form-control" id="nombre_us" name="nombre_us" type="text" aria-describedby="nameHelp" placeholder="Digitar nombre de usuario" required="true">
-                </div>
-
+             
                 <div class="form-group">
                   <label for="contra_us">Contraseña:</label>
                   <input class="form-control" id="contra_us" name="contra_us" type="password" aria-describedby="nameHelp" placeholder="Contraseña" required="true">
                 </div>
 
-                <div class="form-group">
-                  <label for="contra_us1">Confirmar contraseña:</label>
-                  <input class="form-control" id="contra_us1" name="contra_usq" type="password" aria-describedby="nameHelp" placeholder="Confirmar contraseña" required="true">
-                </div>
+              
 
                 <div class="form-group">
                   <label for="dept">Departamento:</label>

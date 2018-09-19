@@ -4,7 +4,7 @@ class Cusuariocd extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_coord/Musuariocd');
+    $this->load->model('m_coord/musuariocd');
   }
 
   public function v_agregarUser()//Vista agregar usuario
@@ -16,7 +16,7 @@ class Cusuariocd extends CI_Controller
     }
     else
     {
-      $datos['cargos'] = $this->Musuariocd->consultarCargos();
+      $datos['cargos'] = $this->musuariocd->consultarCargos();
       $datos['error'] = '';
       $datos['title'] = 'Agregar usuario | Fundación Tesak';
       $this->load->view('layout/header', $datos);
@@ -37,8 +37,8 @@ class Cusuariocd extends CI_Controller
       $id_usuario = $this->input->get('id',TRUE);
       $g['id_usuario1'] = $id_usuario;
       $this->session->set_userdata($g);
-      $datos['actualizar1'] = $this->Musuariocd->consultarUsuario($id_usuario);
-      $datos['cargos'] = $this->Musuariocd->consultarCargos();
+      $datos['actualizar1'] = $this->musuariocd->consultarUsuario($id_usuario);
+      $datos['cargos'] = $this->musuariocd->consultarCargos();
       $datos['error'] = '';
       $titulo['title'] = 'Actualizar usuario | Fundación Tesak';
       $this->load->view('layout/header', $titulo);
@@ -74,29 +74,43 @@ class Cusuariocd extends CI_Controller
     }
     else
     {
+
+      $nombres=$this->input->post('nombre_usuario');
+      $apellidos=$this->input->post('apellido_usuario');
+      $i1=$nombres[0];
+      $i2=$apellidos[0];
+      $n1=rand(1,9);
+      $n2=rand(1,9);
+      $n3=rand(1,9);
+      $user = strtoupper($i1.$i2.$n1.$n2.$n3);
+
       $arreglo['nombre_usuario'] = $this->input->post('nombre_usuario');
       $arreglo['apellido_usuario'] = $this->input->post('apellido_usuario');
       $arreglo['correo'] = $this->input->post('correo');
       $arreglo['telefono'] = $this->input->post('telefono');
-      $arreglo['nombre_us'] = $this->input->post('nombre_us');
+      $arreglo['nombre_us'] = $user;
       $arreglo['contra_us'] = $this->input->post('contra_us');
       $arreglo['dept'] = $this->session->userdata('departamento');
-      $arreglo['cargo'] = $this->input->post('cargo');
+      $arreglo['cargo'] = 3;
 
-      $bandera = $this->Musuariocd->agregarUsuario($arreglo);
+      $bandera = $this->musuariocd->agregarUsuario($arreglo);
 
       if($bandera = true)
       {
-        $datos['cargos'] = $this->Musuariocd->consultarCargos();
+        $datos['cargos'] = $this->musuariocd->consultarCargos();
         $datos['error'] = 'n';
         $datos['title'] = 'Agregar usuario | Fundación Tesak';
+        $duser['user'] = $user;
+        $duser['nombres'] = $arreglo['nombre_usuario'];
+        $duser['apellidos'] = $arreglo['apellido_usuario'];
+        $duser['cargo'] = $arreglo['cargo'];
         $this->load->view('layout/header', $datos);
-        $this->load->view('coord/agregar_usuario',$datos);
+        $this->load->view('layout/usuario_agregado',$duser);
         $this->load->view('layout/scripting');
       }
       else
       {
-        $datos['cargos'] = $this->Musuariocd->consultarCargos();
+        $datos['cargos'] = $this->musuariocd->consultarCargos();
         $datos['error'] = 's';
         $datos['title'] = 'Agregar usuario | Fundación Tesak';
         $this->load->view('layout/header', $datos);
@@ -117,7 +131,7 @@ class Cusuariocd extends CI_Controller
     {
       $id_usuario = $this->input->get('id', TRUE);
 
-      $bandera = $this->Musuariocd->eliminarUsuario($id_usuario);
+      $bandera = $this->musuariocd->eliminarUsuario($id_usuario);
 
       if($bandera = true)
       {
@@ -159,7 +173,7 @@ class Cusuariocd extends CI_Controller
       $arreglo['dept1'] = $this->session->userdata('departamento');
       $arreglo['cargo1'] = $this->input->post('cargo');
 
-      $bandera = $this->Musuariocd->actualizarUsuario($arreglo);
+      $bandera = $this->musuariocd->actualizarUsuario($arreglo);
 
       if($bandera = true)
       {
@@ -191,7 +205,7 @@ class Cusuariocd extends CI_Controller
     {
       $salida="";
       $busqueda = $this->input->post('consulta');
-      $resultados = $this->Musuariocd->buscarUsuario($busqueda);
+      $resultados = $this->musuariocd->buscarUsuario($busqueda);
 
       if($this->session->userdata('usu') > 0)
       {

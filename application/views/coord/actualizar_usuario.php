@@ -42,10 +42,7 @@
                   <input class="form-control" id="contra_us" name="contra_us" type="password" aria-describedby="nameHelp" placeholder="Contraseña" required="true" >
                 </div>
 
-                <div class="form-group">
-                  <label for="contra_us1">Confirmar contraseña:</label>
-                  <input class="form-control" id="contra_us1" name="contra_us1" type="password" aria-describedby="nameHelp" placeholder="Confirmar contraseña" required="true">
-                </div>
+                
 
                 <div class="form-group">
                   <label for="cargo">Cargo:</label>
